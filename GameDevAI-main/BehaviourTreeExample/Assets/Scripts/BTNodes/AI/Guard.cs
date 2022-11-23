@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.AI;
 
-public class Rogue : MonoBehaviour
+public class Guard : MonoBehaviour
 {
-
     private BTBaseNode tree;
     private NavMeshAgent agent;
     private Animator animator;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -18,12 +18,29 @@ public class Rogue : MonoBehaviour
 
     private void Start()
     {
-        //TODO: Create your Behaviour tree here
+        BlackBoard blackBoard = new BlackBoard();
+
+        //Create your Behaviour Tree here!
+
+        /* Nodes to make:
+         * Patrol
+         * DistanceToPlayerCondition
+         * SearchForWeapon
+         * ChasePlayer
+         * AttackPlayer
+         * 
+         * PlayerDeadCondition
+         */
+
+        tree = new BTSequence(blackBoard,
+                new BTWaitTask(blackBoard, 2f),
+                new BTDebugTask(blackBoard, "Debug node")
+            );
     }
 
     private void FixedUpdate()
     {
-        tree?.Run();
+        tree?.Evaluate();
     }
 
     //private void OnDrawGizmos()

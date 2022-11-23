@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.AI;
 
-public class Guard : MonoBehaviour
+public class Ninja : MonoBehaviour
 {
     private BTBaseNode tree;
     private NavMeshAgent agent;
     private Animator animator;
-
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -18,12 +17,21 @@ public class Guard : MonoBehaviour
 
     private void Start()
     {
-        //Create your Behaviour Tree here!
+        //TODO: Create your Behaviour tree here
+
+        /* Nodes to make:
+         * 
+         * DistanceToPlayerCondition
+         * FollowPlayer (tot bepaalde afstand)
+         * Seek Cover
+         * Throw Smoke Bomb near Player
+         * 
+         */
     }
 
     private void FixedUpdate()
     {
-        tree?.Run();
+        tree?.OnUpdate();
     }
 
     //private void OnDrawGizmos()
