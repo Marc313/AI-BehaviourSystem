@@ -1,14 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Guard : MonoBehaviour
 {
+    [Header("Patrol Behaviour")]
+    [SerializeField] private List<Transform> patrolPoints;
+    [SerializeField] private float minDistance;
+
+    [Header("Chase and Attack")]
+    [SerializeField] private float chaseRange = 5;
+    [SerializeField] private float attackRange = 2;
+
     private BTBaseNode tree;
     private NavMeshAgent agent;
     private Animator animator;
+
+    private float timer;
 
     private void Awake()
     {
@@ -19,28 +31,38 @@ public class Guard : MonoBehaviour
     private void Start()
     {
         BlackBoard blackBoard = new BlackBoard();
+        blackBoard.AddOrUpdate("ControllerTransform", transform);
+        blackBoard.AddOrUpdate("Agent", agent);
+        blackBoard.AddOrUpdate("Animator", animator);
 
-        //Create your Behaviour Tree here!
+        //blackBoard.AddOrUpdate("MoveToPoint", () => MoveTowards());
 
-        /* Nodes to make:
-         * Patrol
-         * DistanceToPlayerCondition
-         * SearchForWeapon
-         * ChasePlayer
-         * AttackPlayer
-         * 
-         * PlayerDeadCondition
-         */
+        List<Vector3> patrolPositions = patrolPoints.Select(t => t.position).ToList();
 
-        tree = new BTSequence(blackBoard,
-                new BTWaitTask(blackBoard, 2f),
-                new BTDebugTask(blackBoard, "Debug node")
-            );
+/*        tree = new BTSelector(blackBoard,
+                                new BTPatrolNode(blackBoard, minDistance, patrolPositions.ToArray())
+                                );;*/
+
+        Transform target = FindObjectOfType<Player>().transform;
+        tree = new BTIsTargetInRange(blackBoard, target, chaseRange,
+                    new BTDebugTask(blackBoard, "In Range!")
+                );
+
+        /*        tree = new BTParallel(blackBoard,
+                    new BTWaitTask(blackBoard, 2f),
+                    new BTWaitTask(blackBoard, 1f)
+                );*/
     }
 
     private void FixedUpdate()
     {
-        tree?.Evaluate();
+        NodeStatus? status = tree?.Evaluate();
+/*        if (status == NodeStatus.Success)
+        {
+            Debug.Log("Time: " + timer);
+        }
+
+        timer += Time.deltaTime;*/
     }
 
     //private void OnDrawGizmos()

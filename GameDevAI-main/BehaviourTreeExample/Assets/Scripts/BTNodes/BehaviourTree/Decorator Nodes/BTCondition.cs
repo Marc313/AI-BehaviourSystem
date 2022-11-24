@@ -1,15 +1,22 @@
-public class BTCondition : BTDecorator
-{
-    private bool condition;
+using UnityEngine;
 
-    public BTCondition(BlackBoard _blackBoard, BTBaseNode _node, bool _condition) : base(_blackBoard, _node)
+public abstract class BTCondition<T> : BTDecorator
+{
+    protected System.Predicate<T> condition;
+    protected T comparedValue;
+
+    public BTCondition(BlackBoard _blackBoard, BTBaseNode _node) : base(_blackBoard, _node)
     {
-        condition = _condition;
     }
 
     public override NodeStatus OnUpdate()
     {
-        if (condition)
+        comparedValue = GetComparedValue();
+        bool? conditionResultNullable = condition?.Invoke(comparedValue);
+        bool conditionResult = conditionResultNullable ?? false;
+
+
+        if (conditionResult)
         {
             return child.Evaluate();
         }
@@ -18,4 +25,6 @@ public class BTCondition : BTDecorator
             return NodeStatus.Failed;
         }
     }
+
+    protected abstract T GetComparedValue();
 }
