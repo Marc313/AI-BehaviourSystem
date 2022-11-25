@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class BTCondition<T> : BTDecorator
 {
+    public override string displayName => child.displayName;
     protected System.Predicate<T> condition;
     protected T comparedValue;
 
@@ -13,8 +14,7 @@ public abstract class BTCondition<T> : BTDecorator
     {
         comparedValue = GetComparedValue();
         bool? conditionResultNullable = condition?.Invoke(comparedValue);
-        bool conditionResult = conditionResultNullable ?? false;
-
+        bool conditionResult = conditionResultNullable ?? false;            // When null, bool is false
 
         if (conditionResult)
         {

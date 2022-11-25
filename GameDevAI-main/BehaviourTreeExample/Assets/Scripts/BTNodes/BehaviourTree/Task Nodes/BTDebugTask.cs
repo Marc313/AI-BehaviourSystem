@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BTDebugTask : BTBaseNode
 {
+    public override string displayName => "Debugging";
     private string message;
 
     public BTDebugTask(BlackBoard _blackboard, string _message) : base(_blackboard)

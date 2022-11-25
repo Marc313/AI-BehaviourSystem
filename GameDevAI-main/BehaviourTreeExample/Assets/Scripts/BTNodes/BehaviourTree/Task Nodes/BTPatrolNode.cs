@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BTPatrolNode : BTBaseNode
 {
+    public override string displayName => "Patrolling";
     private Vector3[] waypoints;
     private float minDistance;
 

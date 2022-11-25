@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class BTMoveToPosNode : BTBaseNode
 {
+    public override string displayName => "Patrolling";
     private NavMeshAgent agent;
     private Transform controllerTransform;
     private Animator anim;
@@ -19,7 +20,6 @@ public class BTMoveToPosNode : BTBaseNode
         controllerTransform = blackboard.Get<Transform>("ControllerTransform");
         agent = blackboard.Get<NavMeshAgent>("Agent");
         //anim = blackboard.Get<Animator>("Animator");
-
     }
 
     public override NodeStatus OnEnter()

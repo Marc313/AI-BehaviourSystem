@@ -1,0 +1,33 @@
+﻿using UnityEngine;
+using UnityEngine.AI;
+
+public class BTFollowTarget : BTBaseNode
+{
+    public override string displayName => "Follow Target";
+    private Transform controllerTransform;
+    private Transform target;
+    private NavMeshAgent agent;
+    private float minDistance;
+    private float distanceToTarget;
+
+    public BTFollowTarget(BlackBoard _blackboard, Transform _target, float _minDistance) : base(_blackboard)
+    {
+        target = _target;
+        agent = blackboard.Get<NavMeshAgent>("Agent");
+        controllerTransform = blackboard.Get<Transform>("ControllerTransform");
+    }
+
+    public override NodeStatus OnUpdate()
+    {
+        agent.SetDestination(target.position);
+
+        distanceToTarget = Vector3.Distance(controllerTransform.position, target.position);
+        if (distanceToTarget > minDistance)
+        {
+            return NodeStatus.Running;
+        }
+
+        return NodeStatus.Success;
+
+    }
+}

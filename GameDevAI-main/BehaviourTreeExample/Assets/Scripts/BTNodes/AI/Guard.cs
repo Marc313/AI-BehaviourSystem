@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using Codice.CM.WorkspaceServer;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Guard : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class Guard : MonoBehaviour
     [Header("Chase and Attack")]
     [SerializeField] private float chaseRange = 5;
     [SerializeField] private float attackRange = 2;
+
+    [Header("Information")]
+    [SerializeField] private TMP_Text stateText;
 
     private BTBaseNode tree;
     private NavMeshAgent agent;
@@ -39,14 +43,17 @@ public class Guard : MonoBehaviour
 
         List<Vector3> patrolPositions = patrolPoints.Select(t => t.position).ToList();
 
-/*        tree = new BTSelector(blackBoard,
-                                new BTPatrolNode(blackBoard, minDistance, patrolPositions.ToArray())
-                                );;*/
-
         Transform target = FindObjectOfType<Player>().transform;
-        tree = new BTIsTargetInRange(blackBoard, target, chaseRange,
+        tree = new BTSelector(blackBoard,
+                                new BTIsTargetInRange(blackBoard, target, chaseRange,
+                                    new BTFollowTarget(blackBoard, target, minDistance)
+                                    ),
+                                new BTPatrolNode(blackBoard, minDistance, patrolPositions.ToArray())
+                                );
+
+/*        tree = new BTIsTargetInRange(blackBoard, target, chaseRange,
                     new BTDebugTask(blackBoard, "In Range!")
-                );
+                );*/
 
         /*        tree = new BTParallel(blackBoard,
                     new BTWaitTask(blackBoard, 2f),
@@ -57,12 +64,12 @@ public class Guard : MonoBehaviour
     private void FixedUpdate()
     {
         NodeStatus? status = tree?.Evaluate();
-/*        if (status == NodeStatus.Success)
-        {
-            Debug.Log("Time: " + timer);
-        }
+        if (tree != null) SetStateText(tree.displayName);
+    }
 
-        timer += Time.deltaTime;*/
+    private void SetStateText(string _message)
+    {
+        stateText.text = _message;
     }
 
     //private void OnDrawGizmos()

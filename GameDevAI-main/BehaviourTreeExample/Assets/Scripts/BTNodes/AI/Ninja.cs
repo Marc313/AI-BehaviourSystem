@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.AI;
+using TMPro;
 
 public class Ninja : MonoBehaviour
 {
     private BTBaseNode tree;
     private NavMeshAgent agent;
     private Animator animator;
+
+    [Header("Information")]
+    [SerializeField] private TMP_Text stateText;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -31,7 +36,13 @@ public class Ninja : MonoBehaviour
 
     private void FixedUpdate()
     {
-        tree?.OnUpdate();
+        tree?.Evaluate();
+        if (tree != null) SetStateText(tree.displayName);
+    }
+
+    private void SetStateText(string _message)
+    {
+        stateText.text = _message;
     }
 
     //private void OnDrawGizmos()

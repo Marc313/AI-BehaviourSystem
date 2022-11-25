@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BTWaitTask : BTBaseNode
 {
+    public override string displayName => "Waiting";
     private float waitTime;
     private float timer;
 

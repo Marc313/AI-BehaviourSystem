@@ -1,6 +1,8 @@
 ﻿public enum NodeStatus { Success, Failed, Running }
 public abstract class BTBaseNode
 {
+    public abstract string displayName { get; }
+
     protected BlackBoard blackboard;
     private bool isInitialized;
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BTInvert : BTDecorator
 {
+    public override string displayName => "Inverted " + child.displayName;
+
     public BTInvert(BlackBoard _blackBoard, BTBaseNode _node) : base(_blackBoard, _node)
     {
     }
