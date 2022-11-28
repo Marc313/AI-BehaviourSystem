@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2144548568, guid: fe7dc24be04d6cc4c90baafda54f37b0, type: 3}
+  m_Name: YTDS_FolderData
+  m_EditorClassIdentifier: 
+  item:
+  - "\u6587\u4EF6\u5939\u8DEF\u5F84": {fileID: 102900000, guid: c5f04ec976edb7742b4aa79d80c95f79,
+      type: 3}
+    "\u7EDD\u5BF9\u8DEF\u5F84": 
+    "\u6587\u4EF6\u5939\u6CE8\u91CA": 
+    "\u6CE8\u91CA": 
+    "\u56FE\u6807": {fileID: 2800000, guid: 6128d5b410c24824b94b99436eae25c2, type: 3}
+    "\u5C0F\u56FE\u6807": {fileID: 0}
+    "\u80CC\u666F\u56FE\u7247": {fileID: 0}
+    "\u900F\u660E\u5EA6": 1
+    "\u80CC\u666F\u6A21\u5F0F": 2
+    "\u80CC\u666F\u989C\u8272": {r: 1, g: 1, b: 1, a: 1}
+    "\u80CC\u666F\u5F2F\u5EA6": 2
+    "\u5B57\u4F53": {fileID: 0}
+    "\u5B57\u4F53\u5927\u5C0F": 12
+    "\u5B57\u4F53\u6837\u5F0F": 0
+    "\u5B57\u4F53\u989C\u8272": {r: 0, g: 0, b: 0, a: 1}
+    "\u8986\u76D6\u5B50\u7EA7": 0
+    "\u94FE\u63A5\u4E3B\u6807\u9898": 
+    "\u94FE\u63A5\u6570\u636E": []
+    "\u4EFB\u52A1\u6570\u636E": []
+  - "\u6587\u4EF6\u5939\u8DEF\u5F84": {fileID: 102900000, guid: 8358a729569d174488a15b53d5e491ba,
+      type: 3}
+    "\u7EDD\u5BF9\u8DEF\u5F84": 
+    "\u6587\u4EF6\u5939\u6CE8\u91CA": 
+    "\u6CE8\u91CA": 
+    "\u56FE\u6807": {fileID: 2800000, guid: 0f4ae8e5d74841e4c8414e8f5d8ccec0, type: 3}
+    "\u5C0F\u56FE\u6807": {fileID: 0}
+    "\u80CC\u666F\u56FE\u7247": {fileID: 0}
+    "\u900F\u660E\u5EA6": 1
+    "\u80CC\u666F\u6A21\u5F0F": 2
+    "\u80CC\u666F\u989C\u8272": {r: 1, g: 1, b: 1, a: 1}
+    "\u80CC\u666F\u5F2F\u5EA6": 2
+    "\u5B57\u4F53": {fileID: 0}
+    "\u5B57\u4F53\u5927\u5C0F": 12
+    "\u5B57\u4F53\u6837\u5F0F": 0
+    "\u5B57\u4F53\u989C\u8272": {r: 0, g: 0, b: 0, a: 1}
+    "\u8986\u76D6\u5B50\u7EA7": 0
+    "\u94FE\u63A5\u4E3B\u6807\u9898": 
+    "\u94FE\u63A5\u6570\u636E": []
+    "\u4EFB\u52A1\u6570\u636E": []
+  - "\u6587\u4EF6\u5939\u8DEF\u5F84": {fileID: 102900000, guid: 46b786de65f744e4dbe91831a8f5ee98,
+      type: 3}
+    "\u7EDD\u5BF9\u8DEF\u5F84": 
+    "\u6587\u4EF6\u5939\u6CE8\u91CA": 
+    "\u6CE8\u91CA": 
+    "\u56FE\u6807": {fileID: 2800000, guid: 6ccf3c86e2bc44142acda058bf1570cd, type: 3}
+    "\u5C0F\u56FE\u6807": {fileID: 0}
+    "\u80CC\u666F\u56FE\u7247": {fileID: 0}
+    "\u900F\u660E\u5EA6": 1
+    "\u80CC\u666F\u6A21\u5F0F": 2
+    "\u80CC\u666F\u989C\u8272": {r: 1, g: 1, b: 1, a: 1}
+    "\u80CC\u666F\u5F2F\u5EA6": 2
+    "\u5B57\u4F53": {fileID: 0}
+    "\u5B57\u4F53\u5927\u5C0F": 12
+    "\u5B57\u4F53\u6837\u5F0F": 0
+    "\u5B57\u4F53\u989C\u8272": {r: 0, g: 0, b: 0, a: 1}
+    "\u8986\u76D6\u5B50\u7EA7": 0
+    "\u94FE\u63A5\u4E3B\u6807\u9898": 
+    "\u94FE\u63A5\u6570\u636E": []
+    "\u4EFB\u52A1\u6570\u636E": []
+  - "\u6587\u4EF6\u5939\u8DEF\u5F84": {fileID: 102900000, guid: 8b9053f57d3e821409ef813e91b3c160,
+      type: 3}
+    "\u7EDD\u5BF9\u8DEF\u5F84": 
+    "\u6587\u4EF6\u5939\u6CE8\u91CA": 
+    "\u6CE8\u91CA": 
+    "\u56FE\u6807": {fileID: 2800000, guid: 0dbf7a8d7636eeb4cb4942624241b1d6, type: 3}
+    "\u5C0F\u56FE\u6807": {fileID: 0}
+    "\u80CC\u666F\u56FE\u7247": {fileID: 0}
+    "\u900F\u660E\u5EA6": 1
+    "\u80CC\u666F\u6A21\u5F0F": 2
+    "\u80CC\u666F\u989C\u8272": {r: 1, g: 1, b: 1, a: 1}
+    "\u80CC\u666F\u5F2F\u5EA6": 2
+    "\u5B57\u4F53": {fileID: 0}
+    "\u5B57\u4F53\u5927\u5C0F": 12
+    "\u5B57\u4F53\u6837\u5F0F": 0
+    "\u5B57\u4F53\u989C\u8272": {r: 0, g: 0, b: 0, a: 1}
+    "\u8986\u76D6\u5B50\u7EA7": 0
+    "\u94FE\u63A5\u4E3B\u6807\u9898": 
+    "\u94FE\u63A5\u6570\u636E": []
+    "\u4EFB\u52A1\u6570\u636E": []
+  - "\u6587\u4EF6\u5939\u8DEF\u5F84": {fileID: 102900000, guid: 24553c164beaf014caff99fcf0ec8fe4,
+      type: 3}
+    "\u7EDD\u5BF9\u8DEF\u5F84": 
+    "\u6587\u4EF6\u5939\u6CE8\u91CA": 
+    "\u6CE8\u91CA": 
+    "\u56FE\u6807": {fileID: 2800000, guid: 05f8bbc8c9f632245bcf9ec1386d94d3, type: 3}
+    "\u5C0F\u56FE\u6807": {fileID: 0}
+    "\u80CC\u666F\u56FE\u7247": {fileID: 0}
+    "\u900F\u660E\u5EA6": 1
+    "\u80CC\u666F\u6A21\u5F0F": 2
+    "\u80CC\u666F\u989C\u8272": {r: 1, g: 1, b: 1, a: 1}
+    "\u80CC\u666F\u5F2F\u5EA6": 2
+    "\u5B57\u4F53": {fileID: 0}
+    "\u5B57\u4F53\u5927\u5C0F": 12
+    "\u5B57\u4F53\u6837\u5F0F": 0
+    "\u5B57\u4F53\u989C\u8272": {r: 0, g: 0, b: 0, a: 1}
+    "\u8986\u76D6\u5B50\u7EA7": 0
+    "\u94FE\u63A5\u4E3B\u6807\u9898": 
+    "\u94FE\u63A5\u6570\u636E": []
+    "\u4EFB\u52A1\u6570\u636E": []
+  - "\u6587\u4EF6\u5939\u8DEF\u5F84": {fileID: 102900000, guid: b48fcb9b4d27a7b4c87be6199bc60532,
+      type: 3}
+    "\u7EDD\u5BF9\u8DEF\u5F84": 
+    "\u6587\u4EF6\u5939\u6CE8\u91CA": 
+    "\u6CE8\u91CA": 
+    "\u56FE\u6807": {fileID: 2800000, guid: 6128d5b410c24824b94b99436eae25c2, type: 3}
+    "\u5C0F\u56FE\u6807": {fileID: 0}
+    "\u80CC\u666F\u56FE\u7247": {fileID: 0}
+    "\u900F\u660E\u5EA6": 1
+    "\u80CC\u666F\u6A21\u5F0F": 2
+    "\u80CC\u666F\u989C\u8272": {r: 1, g: 1, b: 1, a: 1}
+    "\u80CC\u666F\u5F2F\u5EA6": 2
+    "\u5B57\u4F53": {fileID: 0}
+    "\u5B57\u4F53\u5927\u5C0F": 12
+    "\u5B57\u4F53\u6837\u5F0F": 0
+    "\u5B57\u4F53\u989C\u8272": {r: 0, g: 0, b: 0, a: 1}
+    "\u8986\u76D6\u5B50\u7EA7": 0
+    "\u94FE\u63A5\u4E3B\u6807\u9898": 
+    "\u94FE\u63A5\u6570\u636E": []
+    "\u4EFB\u52A1\u6570\u636E": []
+  - "\u6587\u4EF6\u5939\u8DEF\u5F84": {fileID: 102900000, guid: c95deca40dc107141bd1901c270e7ec0,
+      type: 3}
+    "\u7EDD\u5BF9\u8DEF\u5F84": 
+    "\u6587\u4EF6\u5939\u6CE8\u91CA": 
+    "\u6CE8\u91CA": 
+    "\u56FE\u6807": {fileID: 2800000, guid: 88e0794549edb4e48bbaac5287051675, type: 3}
+    "\u5C0F\u56FE\u6807": {fileID: 0}
+    "\u80CC\u666F\u56FE\u7247": {fileID: 0}
+    "\u900F\u660E\u5EA6": 1
+    "\u80CC\u666F\u6A21\u5F0F": 2
+    "\u80CC\u666F\u989C\u8272": {r: 1, g: 1, b: 1, a: 1}
+    "\u80CC\u666F\u5F2F\u5EA6": 2
+    "\u5B57\u4F53": {fileID: 0}
+    "\u5B57\u4F53\u5927\u5C0F": 12
+    "\u5B57\u4F53\u6837\u5F0F": 0
+    "\u5B57\u4F53\u989C\u8272": {r: 0, g: 0, b: 0, a: 1}
+    "\u8986\u76D6\u5B50\u7EA7": 0
+    "\u94FE\u63A5\u4E3B\u6807\u9898": 
+    "\u94FE\u63A5\u6570\u636E": []
+    "\u4EFB\u52A1\u6570\u636E": []
+  - "\u6587\u4EF6\u5939\u8DEF\u5F84": {fileID: 102900000, guid: 9e009e6b12a23a540bef962e84a531c3,
+      type: 3}
+    "\u7EDD\u5BF9\u8DEF\u5F84": 
+    "\u6587\u4EF6\u5939\u6CE8\u91CA": 
+    "\u6CE8\u91CA": 
+    "\u56FE\u6807": {fileID: 2800000, guid: 7ddbbbbe67edf35449126bd9c4b2cd3b, type: 3}
+    "\u5C0F\u56FE\u6807": {fileID: 0}
+    "\u80CC\u666F\u56FE\u7247": {fileID: 0}
+    "\u900F\u660E\u5EA6": 1
+    "\u80CC\u666F\u6A21\u5F0F": 2
+    "\u80CC\u666F\u989C\u8272": {r: 1, g: 1, b: 1, a: 1}
+    "\u80CC\u666F\u5F2F\u5EA6": 2
+    "\u5B57\u4F53": {fileID: 0}
+    "\u5B57\u4F53\u5927\u5C0F": 12
+    "\u5B57\u4F53\u6837\u5F0F": 0
+    "\u5B57\u4F53\u989C\u8272": {r: 0, g: 0, b: 0, a: 1}
+    "\u8986\u76D6\u5B50\u7EA7": 0
+    "\u94FE\u63A5\u4E3B\u6807\u9898": 
+    "\u94FE\u63A5\u6570\u636E": []
+    "\u4EFB\u52A1\u6570\u636E": []
