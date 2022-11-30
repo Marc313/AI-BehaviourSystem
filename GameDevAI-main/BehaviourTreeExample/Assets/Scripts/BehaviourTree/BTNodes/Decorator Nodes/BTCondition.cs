@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public abstract class BTCondition<T> : BTDecorator
+public abstract class BTCondition<T> : BTBaseNode
 {
-    public override string displayName => child.displayName;
+    public override string displayName => "Check Target in Range";
     protected System.Predicate<T> condition;
     protected T comparedValue;
 
-    public BTCondition(BlackBoard _blackBoard, BTBaseNode _node) : base(_blackBoard, _node)
+    public BTCondition(BlackBoard _blackBoard) : base(_blackBoard)
     {
     }
 
@@ -18,7 +18,8 @@ public abstract class BTCondition<T> : BTDecorator
 
         if (conditionResult)
         {
-            return child.Evaluate();
+            return NodeStatus.Success;
+            //return child.Evaluate();
         }
         else
         {

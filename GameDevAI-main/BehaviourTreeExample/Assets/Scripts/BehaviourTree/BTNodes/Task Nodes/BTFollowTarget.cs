@@ -11,10 +11,10 @@ public class BTFollowTarget : BTBaseNode
     private float distanceToTarget;
     private bool shouldKeepDistance;
 
-    public BTFollowTarget(BlackBoard _blackboard, Transform _target, float _minDistance, bool _shouldKeepDistance) : base(_blackboard)
+    public BTFollowTarget(BlackBoard _blackboard, Transform _target, float _minDistance) : base(_blackboard)
     {
         target = _target;
-        shouldKeepDistance= _shouldKeepDistance;
+        //shouldKeepDistance= _shouldKeepDistance;
 
         minDistance = _minDistance;
         controllerTransform = blackboard.Get<Transform>("ControllerTransform");
@@ -33,8 +33,7 @@ public class BTFollowTarget : BTBaseNode
         }
         else
         {
-            if (shouldKeepDistance) { agent.enabled= false; }
-
+            agent.enabled = false;
             return NodeStatus.Success;
         }
     }
