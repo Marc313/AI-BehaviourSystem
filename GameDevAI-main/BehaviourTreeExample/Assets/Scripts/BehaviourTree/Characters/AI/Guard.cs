@@ -15,6 +15,10 @@ public class Guard : AICharacter
     [SerializeField] private float chaseRange = 5;
     [SerializeField] private float attackRange = 2;
 
+    [Header("Sight")]
+    [Range(-0.5f, 1f)]
+    [SerializeField] private float inSightRange;
+
     [Header("Animator")]
     [SerializeField] private float animationFadeTime;
 
@@ -32,25 +36,32 @@ public class Guard : AICharacter
         List<Vector3> patrolPositions = patrolPoints.Select(t => t.position).ToList();
         Transform player = FindObjectOfType<Player>().transform;
 
-        /*        tree = new BTSelector(blackBoard,
-                    new BTSequence(blackBoard, 
-                        new BTIsTargetInRange(blackBoard, player, chaseRange),
-                        new BTSequence(blackBoard,
-                            new BTFollowTarget(blackBoard, player, attackRange),
-                            new BTIsTargetInRange(blackBoard, player, attackRange),
-                            new BTSequence(blackBoard,
-                                new BTAnimate(blackBoard, "Kick", animationFadeTime),
-                                new BTAttackTarget(blackBoard, player.gameObject, 10)
-                                )
-                            )
-                        ),
-                    new BTSequence(blackBoard,
-                        new BTAnimate(blackBoard, "Rifle Walk", animationFadeTime),
-                        new BTPatrolNode(blackBoard, minDistance, patrolPositions.ToArray()))
-                    );*/
+        /*        BTBaseNode chasingSequence = new BTSequence(blackBoard,
+                                                    new BTIsTargetInRange(blackBoard, player, chaseRange),
+                                                    new BTSequence(blackBoard,
+                                                        new BTSpotTarget(blackBoard, player.GetComponent<ISpottable>(), true),
+                                                        new BTFollowTarget(blackBoard, player, attackRange),
+                                                        new BTIsTargetInRange(blackBoard, player, attackRange),
+                                                        new BTSequence(blackBoard,
+                                                            new BTAnimate(blackBoard, "Kick", animationFadeTime),
+                                                            new BTAttackTarget(blackBoard, player.gameObject, 10)
+                                                            )
+                                                        )
+                                                    );
 
-        tree = new BTPatrolNode(blackBoard, minDistance, patrolPositions.ToArray());
-        
+                BTBaseNode patrolTree = new BTSequence(blackBoard,
+                                            new BTAnimate(blackBoard, "Rifle Walk", animationFadeTime),
+                                            new BTPatrolNode(blackBoard, minDistance, patrolPositions.ToArray()));
+
+                tree = new BTSelector(blackBoard,
+                            chasingSequence,
+                            patrolTree
+                        );*/
+
+        tree = new BTSequence(blackBoard,
+                    new BTIsTargetInSight(blackBoard, player, inSightRange),
+                    new BTDebugTask(blackBoard, "In Sight!")
+                        );
     }
 
     protected override void InitializeBlackboard()
@@ -61,17 +72,4 @@ public class Guard : AICharacter
         blackBoard.AddOrUpdate("Agent", agent);
         blackBoard.AddOrUpdate("Animator", animator);
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.yellow;
-    //    Handles.color = Color.yellow;
-    //    Vector3 endPointLeft = viewTransform.position + (Quaternion.Euler(0, -ViewAngleInDegrees.Value, 0) * viewTransform.transform.forward).normalized * SightRange.Value;
-    //    Vector3 endPointRight = viewTransform.position + (Quaternion.Euler(0, ViewAngleInDegrees.Value, 0) * viewTransform.transform.forward).normalized * SightRange.Value;
-
-    //    Handles.DrawWireArc(viewTransform.position, Vector3.up, Quaternion.Euler(0, -ViewAngleInDegrees.Value, 0) * viewTransform.transform.forward, ViewAngleInDegrees.Value * 2, SightRange.Value);
-    //    Gizmos.DrawLine(viewTransform.position, endPointLeft);
-    //    Gizmos.DrawLine(viewTransform.position, endPointRight);
-
-    //}
 }

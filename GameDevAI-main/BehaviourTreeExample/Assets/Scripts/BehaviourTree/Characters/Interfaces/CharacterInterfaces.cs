@@ -8,3 +8,8 @@ public interface IHealthUser : IDamagable
     public int CurrentHealth { get; }
     public int MaxHealth { get; }
 }
+
+public interface ISpottable
+{
+    public bool isSpotted { get; set; }
+}

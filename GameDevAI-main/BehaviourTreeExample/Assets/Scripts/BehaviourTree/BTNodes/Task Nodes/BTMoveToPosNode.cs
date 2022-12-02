@@ -43,6 +43,7 @@ public class BTMoveToPosNode : BTBaseNode
             if (blackboard.Contains(waypointBlackboardID))
             {
                 targetPos = blackboard.Get<Vector3>(waypointBlackboardID);
+                Debug.Log("Cover: " + targetPos);
             }
             else
             {

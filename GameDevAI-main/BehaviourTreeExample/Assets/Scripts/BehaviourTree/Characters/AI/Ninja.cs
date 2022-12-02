@@ -3,12 +3,23 @@ using UnityEngine.AI;
 
 public class Ninja : AICharacter
 {
+    [Header("General Settings")]
+    [SerializeField] private float defaultSpeed = 2;
+
     [Header("Follow State")]
     [SerializeField] private float distanceToTarget;
     [SerializeField] private float minCoverDistance;
 
     [Header("Cover")]
     [SerializeField] private float inSightRange;
+    [SerializeField] private float coverMoveSpeed;
+    [SerializeField] private float maxCoverDistance = 25;
+    [SerializeField] private GameObject smokeBombPrefab;
+    [SerializeField] private float smokeBombCooldown = 1;
+
+    [Header("Animation Curves")]
+    [SerializeField] private AnimationCurve distanceEvaluator;
+    [SerializeField] private AnimationCurve lineOfSightEvaluator;
 
     [Header("Animator")]
     [SerializeField] private float animationFadeTime;
@@ -27,6 +38,8 @@ public class Ninja : AICharacter
         Transform player = FindObjectOfType<Player>().transform;    // TODO: Service Locator
         Transform guard = FindObjectOfType<Guard>().transform;    // TODO: Service Locator
 
+        ISpottable playerSpottable = player.GetComponent<ISpottable>();
+
         BTBaseNode followSequence = new BTSequence(blackBoard,
                                         new BTAnimate(blackBoard, "Crouch Idle", animationFadeTime),
                                         new BTInvert(blackBoard,
@@ -35,29 +48,36 @@ public class Ninja : AICharacter
                                         new BTAnimate(blackBoard, "Walk Crouch"),
                                         new BTFollowTarget(blackBoard, player, distanceToTarget));
 
-        tree = followSequence;
+        BTBaseNode playerSpottedSequence = new BTSequence(blackBoard,
+                                                new BTIsTargetSpotted(blackBoard, playerSpottable),
+                                                new BTSeekCover(blackBoard, inSightRange, maxCoverDistance),
+                                                new BTAnimate(blackBoard, "Walk Crouch"),
+                                                new BTInvokeAction(blackBoard, () => agent.speed = coverMoveSpeed),
+                                                new BTMoveToPosNode(blackBoard, "CoverPosition", minCoverDistance),
+                                                new BTInvokeAction(blackBoard, () => agent.speed = defaultSpeed),
+                                                new BTAnimate(blackBoard, "Crouch Idle"),
+                                                new BTThrowObjectAtTarget(blackBoard, smokeBombPrefab, player),
+                                                new BTWaitTask(blackBoard, smokeBombCooldown)
+                                            );
 
-/*        BTBaseNode baseTree = new BTSelector(blackBoard,
-                                new BTSequence(blackBoard,
-                                        new BTIsTargetInRange(blackBoard, guard, distanceToTarget),
-                                        new BTSeekCover(blackBoard, inSightRange),
-                                       new BTMoveToPosNode(blackBoard, "CoverPosition", minCoverDistance)),
-                                new BTFollowTarget(blackBoard, player, distanceToTarget, true)
-                            );*/
-
-/*        tree = new BTSelector(blackBoard,
-                            new BTInvert(blackBoard, tree),
-                            new BTAnimate(blackBoard, "Idle")
-                            );*/
+        tree = new BTSelector(blackBoard,
+                                playerSpottedSequence,
+                                followSequence
+                                );
     }
 
     protected override void InitializeBlackboard()
     {
         blackBoard = new BlackBoard();
 
+        // Components
         blackBoard.AddOrUpdate("ControllerTransform", transform);
         blackBoard.AddOrUpdate("Agent", agent);
         blackBoard.AddOrUpdate("Animator", animator);
+
+        // Animation Curves
+        blackBoard.AddOrUpdate("DistanceCurve", distanceEvaluator);
+        blackBoard.AddOrUpdate("SightCurve", lineOfSightEvaluator);
     }
 
     //private void OnDrawGizmos()

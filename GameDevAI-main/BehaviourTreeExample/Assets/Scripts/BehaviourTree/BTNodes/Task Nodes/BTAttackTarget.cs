@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor.Graphs;
 using UnityEngine;
 
 public class BTAttackTarget : BTBaseNode
@@ -24,7 +20,7 @@ public class BTAttackTarget : BTBaseNode
     {
         if (playerTarget == null) return NodeStatus.Failed;
 
-        playerTarget.TakeDamage(damage);
+        ((MonoBehaviour)playerTarget).gameObject.GetComponent<Player>().TakeDamage(controllerTransform.gameObject, damage);
         return NodeStatus.Success;
     }
 }

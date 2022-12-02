@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour, IDamageable, ISpottable, IHealthUser
 {
+    // Provided //
     public Transform Camera;
     [SerializeField] private float rotationSpeed = 180f;
     [SerializeField] private float moveSpeed = 3;
@@ -16,6 +15,13 @@ public class Player : MonoBehaviour, IDamageable
     private float hor = 0;
     private Vector3 moveDirection;
     private Collider mainCollider;
+
+    // Extension //
+    public bool isSpotted { get; set; } = false;
+
+    public int CurrentHealth { get; private set; }
+    public int MaxHealth => 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +70,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(GameObject attacker, int damage)
     {
+        Debug.Log("Au");
         animator.enabled = false;
         var cols = GetComponentsInChildren<Collider>();
         foreach (Collider col in cols)
@@ -73,11 +80,11 @@ public class Player : MonoBehaviour, IDamageable
         mainCollider.enabled = false;
 
         var rigidBodies = GetComponentsInChildren<Rigidbody>();
-        foreach (Rigidbody rib in rigidBodies)
+        foreach (Rigidbody rb in rigidBodies)
         {
-            rib.isKinematic = false;
-            rib.useGravity = true;
-            rib.AddForce(Vector3.Scale(new Vector3(1,0.5f,1),(transform.position - attacker.transform.position).normalized * deathForce));
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            rb.AddForce(Vector3.Scale(new Vector3(1,0.5f,1),(transform.position - attacker.transform.position).normalized * deathForce));
         }
         ragdoll.transform.SetParent(null);
 

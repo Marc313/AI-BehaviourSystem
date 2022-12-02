@@ -2,7 +2,8 @@
     "name": "Provided.Player",
     "rootNamespace": "",
     "references": [
-        "GUID:166a1a93be4f8b0418666ba5bf372749"
+        "GUID:166a1a93be4f8b0418666ba5bf372749",
+        "GUID:0055a26084400fa4381c7e5930cea624"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
