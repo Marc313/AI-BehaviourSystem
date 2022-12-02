@@ -40,30 +40,45 @@ public class Ninja : AICharacter
 
         ISpottable playerSpottable = player.GetComponent<ISpottable>();
 
-        BTBaseNode followSequence = new BTSequence(blackBoard,
-                                        new BTAnimate(blackBoard, "Crouch Idle", animationFadeTime),
-                                        new BTInvert(blackBoard,
-                                                        new BTIsTargetInRange(blackBoard, player, distanceToTarget)
-                                                     ),
-                                        new BTAnimate(blackBoard, "Walk Crouch"),
-                                        new BTFollowTarget(blackBoard, player, distanceToTarget));
-
-        BTBaseNode playerSpottedSequence = new BTSequence(blackBoard,
-                                                new BTIsTargetSpotted(blackBoard, playerSpottable),
-                                                new BTSeekCover(blackBoard, inSightRange, maxCoverDistance),
+        /*        BTBaseNode followSequence = new BTSequence(blackBoard,
+                                                new BTAnimate(blackBoard, "Crouch Idle", animationFadeTime),
+                                                new BTInvert(blackBoard,
+                                                                new BTIsTargetInRange(blackBoard, player, distanceToTarget)
+                                                             ),
                                                 new BTAnimate(blackBoard, "Walk Crouch"),
-                                                new BTInvokeAction(blackBoard, () => agent.speed = coverMoveSpeed),
-                                                new BTMoveToPosNode(blackBoard, "CoverPosition", minCoverDistance),
-                                                new BTInvokeAction(blackBoard, () => agent.speed = defaultSpeed),
-                                                new BTAnimate(blackBoard, "Crouch Idle"),
-                                                new BTThrowObjectAtTarget(blackBoard, smokeBombPrefab, player),
-                                                new BTWaitTask(blackBoard, smokeBombCooldown)
-                                            );
+                                                new BTFollowTarget(blackBoard, player, distanceToTarget));
 
-        tree = new BTSelector(blackBoard,
-                                playerSpottedSequence,
-                                followSequence
-                                );
+                BTBaseNode playerSpottedSequence = new BTSequence(blackBoard,
+                                                        new BTIsTargetSpotted(blackBoard, playerSpottable),
+                                                        new BTSeekCover(blackBoard, inSightRange, maxCoverDistance),
+                                                        new BTAnimate(blackBoard, "Walk Crouch"),
+                                                        new BTInvokeAction(blackBoard, () => agent.speed = coverMoveSpeed),
+                                                        new BTMoveToBlackboardPos(blackBoard, "CoverPosition", minCoverDistance),
+                                                        new BTInvokeAction(blackBoard, () => agent.speed = defaultSpeed),
+                                                        new BTAnimate(blackBoard, "Crouch Idle"),
+                                                        new BTThrowObjectAtTarget(blackBoard, smokeBombPrefab, player),
+                                                        new BTWaitTask(blackBoard, smokeBombCooldown)
+                                                    );
+
+                blackBoard.AddOrUpdate("TestPos", new Vector3(5, 0, 5));
+
+                tree = new BTSelector(blackBoard,
+                                        new BTMoveToBlackboardPos(blackBoard, "TestPos", minCoverDistance),
+                                        playerSpottedSequence,
+                                        followSequence
+                                        );*/
+
+        tree = new BTSequence(blackBoard,
+                new BTConditional(blackBoard, () => Vector3.Distance(transform.position, player.position) < distanceToTarget),
+                new BTSequence(blackBoard,
+                    new BTDebugTask(blackBoard, "Test1"),
+                    new BTWaitTask(blackBoard, 2f),
+                    new BTDebugTask(blackBoard, "Test2"),
+                    new BTWaitTask(blackBoard, 2f),
+                    new BTDebugTask(blackBoard, "Test3")
+
+                    )
+                );
     }
 
     protected override void InitializeBlackboard()

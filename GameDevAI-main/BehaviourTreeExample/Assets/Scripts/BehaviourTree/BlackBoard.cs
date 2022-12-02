@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class BlackBoard
@@ -44,7 +45,15 @@ public class BlackBoard
     {
         object data;
         storedData.TryGetValue(_id, out data);
-        return (T) data;
+
+        try
+        {
+            return (T) data;
+        }
+        catch (Exception e)
+        {
+            return default(T);
+        }
     }
 }
 

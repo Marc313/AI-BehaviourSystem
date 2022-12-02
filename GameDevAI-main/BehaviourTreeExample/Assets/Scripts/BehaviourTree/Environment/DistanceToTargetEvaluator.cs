@@ -1,19 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [CreateAssetMenu(menuName = "Evaluators/Float Evaluator")]
 public class DistanceToTargetEvaluator : UtilityEvaluator
 {
     private Transform target;
     private Transform controllerTransform;
+    private NavMeshAgent agent;
     private float distanceToTarget;
     private float maxDistance;
 
     public DistanceToTargetEvaluator(BlackBoard _blackBoard, float _maxDistance) : base(_blackBoard)
     {
         maxDistance = _maxDistance;
-        controllerTransform = blackBoard.Get<Transform>("ControllerTransform");
+        controllerTransform = _blackBoard.Get<Transform>("ControllerTransform");
+        agent = _blackBoard.Get<NavMeshAgent>("Agent");
     }
 
     protected override AnimationCurve GetCurve()
@@ -33,9 +34,11 @@ public class DistanceToTargetEvaluator : UtilityEvaluator
 
     protected override float GetValue()
     {
-        Vector3 coverPos = blackBoard.Get<Vector3>("CurrentCoverPos");
-        float distanceToCover = Vector3.Distance(controllerTransform.position, coverPos);
+        Vector3 objectPos = blackBoard.Get<MonoBehaviour>("CurrentSearchItem").transform.position;
+        float distanceToObject = Vector3.Distance(controllerTransform.position, objectPos);
 
-        return distanceToCover;
+        //float distanceToObject = agent.CalculatePath(objectPos);
+
+        return distanceToObject;
     }
 }

@@ -16,10 +16,10 @@ public class BTPatrolNode : BTBaseNode
 
     public override NodeStatus OnEnter()
     {
-        BTMoveToPosNode[] children = new BTMoveToPosNode[waypoints.Length];
+        BTMoveToPosition[] children = new BTMoveToPosition[waypoints.Length];
         for (int i = 0; i < waypoints.Length; i++)
         {
-            children[i] = new BTMoveToPosNode(blackboard, waypoints[i], minDistance);
+            children[i] = new BTMoveToPosition(blackboard, waypoints[i], minDistance);
         }
 
         sequenceNode = new BTSequence(blackboard, children);
