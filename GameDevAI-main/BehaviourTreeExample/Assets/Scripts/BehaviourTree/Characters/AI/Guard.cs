@@ -57,6 +57,7 @@ public class Guard : AICharacter
                                                             )
                                                         )
                                                     );*/
+        ISpottable playerSpottable = player.GetComponent<ISpottable>();
 
 
 
@@ -64,8 +65,7 @@ public class Guard : AICharacter
                                             new BTIsTargetInRange(blackBoard, player, attackRange),
                                             new BTSequence(blackBoard,
                                                 new BTAnimate(blackBoard, "Kick"),
-                                                new BTAttackTarget(blackBoard, player.gameObject, 10)
-                                                    
+                                                new BTWaitTillAnimEnd(blackBoard)
                                                 )
                                         );
 
@@ -74,16 +74,15 @@ public class Guard : AICharacter
                                     attackSequence
                                     );
 
-        BTBaseNode whileInSight = new BTSelector(blackBoard,
-                                        new BTInvert(blackBoard,
-                                            new BTIsTargetInSight(blackBoard, player, inSightRange)
-                                            ),
+        BTBaseNode whileInSight = new BTConditionDecorator(blackBoard,
+                                        new BTIsTargetInSight(blackBoard, player, inSightRange),
                                         chasingTree
                                     );
 
         BTBaseNode findWeaponSequence = new BTSequence(blackBoard,
                                             new BTIsTargetInRange(blackBoard, player, chaseRange),
                                             new BTIsTargetInSight(blackBoard, player, inSightRange),
+                                            new BTSpotTarget(blackBoard, playerSpottable, true),
                                             new BTSelector(blackBoard,
                                                 new BTSequence(blackBoard,
                                                     new BTInvert(blackBoard, 
@@ -97,8 +96,9 @@ public class Guard : AICharacter
                                             ));
 
         BTBaseNode patrolTree = new BTSequence(blackBoard,
-                            new BTAnimate(blackBoard, "Rifle Walk", animationFadeTime),
-                            new BTPatrolNode(blackBoard, minDistance, patrolPositions.ToArray()));
+                                    new BTSpotTarget(blackBoard, playerSpottable, false),
+                                    new BTAnimate(blackBoard, "Rifle Walk", animationFadeTime),
+                                    new BTPatrolNode(blackBoard, minDistance, patrolPositions.ToArray()));
 
         tree = new BTSelector(blackBoard,
                     findWeaponSequence,
@@ -111,18 +111,25 @@ public class Guard : AICharacter
                                 );
 
                 tree = SightTest;*/
+
+        tree = attackSequence;
     }
 
     protected override void InitializeBlackboard()
     {
         blackBoard = new BlackBoard();
 
+        // Components
         blackBoard.AddOrUpdate("Base", this);
         blackBoard.AddOrUpdate("ControllerTransform", transform);
         blackBoard.AddOrUpdate("Agent", agent);
         blackBoard.AddOrUpdate("Animator", animator);
 
+        // Curves
         blackBoard.AddOrUpdate("DistanceCurve", distanceEvaluator);
         blackBoard.AddOrUpdate("DamageCurve", damageEvaluator);
+
+        // Floats
+        blackBoard.AddOrUpdate("AttackRange", attackRange);
     }
 }

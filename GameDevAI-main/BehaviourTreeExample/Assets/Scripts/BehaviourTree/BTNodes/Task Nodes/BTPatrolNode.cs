@@ -29,7 +29,7 @@ public class BTPatrolNode : BTBaseNode
 
     public override NodeStatus OnUpdate()
     {
-        return sequenceNode.OnUpdate();
+        return sequenceNode.Evaluate();
     }
 
     public override NodeStatus OnExit()

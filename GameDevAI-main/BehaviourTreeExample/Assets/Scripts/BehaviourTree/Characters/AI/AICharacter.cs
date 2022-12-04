@@ -10,7 +10,6 @@ public abstract class AICharacter : Character
     protected BTBaseNode tree;
     protected NavMeshAgent agent;
     protected Animator animator;
-    protected BlackBoard blackBoard;
 
     protected virtual void Start()
     {

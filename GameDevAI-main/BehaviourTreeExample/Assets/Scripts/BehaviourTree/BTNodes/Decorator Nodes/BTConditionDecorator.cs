@@ -1,11 +1,11 @@
 public class BTConditionDecorator : BTBaseNode
 {
-    public override string displayName => throw new System.NotImplementedException();
+    public override string displayName => childNode.displayName;
 
-    private BTConditional conditionNode;
+    private BTBaseNode conditionNode;
     private BTBaseNode childNode;
 
-    public BTConditionDecorator(BlackBoard _blackboard, BTConditional _conditionNode, BTBaseNode _childNode) : base(_blackboard)
+    public BTConditionDecorator(BlackBoard _blackboard, BTBaseNode _conditionNode, BTBaseNode _childNode) : base(_blackboard)
     {
         conditionNode = _conditionNode;
         childNode = _childNode;
