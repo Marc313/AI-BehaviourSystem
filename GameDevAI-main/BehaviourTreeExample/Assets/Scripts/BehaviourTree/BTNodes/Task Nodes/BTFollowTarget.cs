@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Codice.Client.Common;
+using System.IO;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class BTFollowTarget : BTBaseNode
@@ -19,11 +21,17 @@ public class BTFollowTarget : BTBaseNode
         minDistance = _minDistance;
         controllerTransform = blackboard.Get<Transform>("ControllerTransform");
         agent = blackboard.Get<NavMeshAgent>("Agent");
+
+    }
+
+    public override NodeStatus OnEnter()
+    {
+        agent.enabled = true;
+        return NodeStatus.Success;
     }
 
     public override NodeStatus OnUpdate()
     {
-        agent.enabled = true;
         agent.SetDestination(target.position);
 
         distanceToTarget = Vector3.Distance(controllerTransform.position, target.position);
@@ -33,8 +41,13 @@ public class BTFollowTarget : BTBaseNode
         }
         else
         {
-            agent.enabled = false;
             return NodeStatus.Success;
         }
+    }
+
+    public override NodeStatus OnExit()
+    {
+        agent.SetDestination(controllerTransform.position);
+        return NodeStatus.Success;
     }
 }

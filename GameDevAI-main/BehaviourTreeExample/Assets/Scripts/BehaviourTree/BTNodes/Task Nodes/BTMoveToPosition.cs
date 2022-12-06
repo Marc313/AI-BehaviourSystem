@@ -31,11 +31,16 @@ public class BTMoveToPosition : BTBaseNode
         agent.enabled = true;
         agent.SetDestination(targetPos);
 
-        return base.OnEnter();
+        return NodeStatus.Success;
     }
 
     public override NodeStatus OnUpdate()
     {
+        if (agent.destination != targetPos)
+        {
+            agent.SetDestination(targetPos);
+        }
+
         distanceToDestination = Vector3.Distance(controllerTransform.position, targetPos);
         if (distanceToDestination > minDistance)
         {
@@ -43,5 +48,12 @@ public class BTMoveToPosition : BTBaseNode
         }
 
         return NodeStatus.Success;
+    }
+
+    public override NodeStatus OnExit()
+    {
+        agent.SetDestination(controllerTransform.position);
+        return NodeStatus.Success;
+        //agent.isStopped = true;
     }
 }

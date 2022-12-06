@@ -53,7 +53,7 @@ public class Ninja : AICharacter
                                                 new BTSeekCover(blackBoard, inSightRange, maxCoverDistance),
                                                 new BTAnimate(blackBoard, "Walk Crouch"),
                                                 new BTInvokeAction(blackBoard, () => agent.speed = coverMoveSpeed),
-                                                new BTMoveToBlackboardPos(blackBoard, "CoverPosition", minCoverDistance),
+                                                new BTMoveToBlackboardPos(blackBoard, "BestCoverPosition", minCoverDistance),
                                                 new BTInvokeAction(blackBoard, () => agent.speed = defaultSpeed),
                                                 new BTAnimate(blackBoard, "Crouch Idle"),
                                                 new BTThrowObjectAtTarget(blackBoard, smokeBombPrefab, player),

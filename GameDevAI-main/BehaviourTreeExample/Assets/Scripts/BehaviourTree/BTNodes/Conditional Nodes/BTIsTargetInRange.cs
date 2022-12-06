@@ -10,7 +10,7 @@ public class BTIsTargetInRange : BTCondition<float>
         target= _target;
         controllerTransform = blackboard.Get<Transform>("ControllerTransform");
 
-        condition = (float distanceToTarget) => distanceToTarget < _range;
+        condition = (float distanceToTarget) => distanceToTarget <= _range;
     }
 
     protected override float GetComparedValue()

@@ -12,10 +12,7 @@ public class BTPatrolNode : BTBaseNode
     {
         minDistance = _minDistance;
         waypoints = _waypoints;
-    }
 
-    public override NodeStatus OnEnter()
-    {
         BTMoveToPosition[] children = new BTMoveToPosition[waypoints.Length];
         for (int i = 0; i < waypoints.Length; i++)
         {
@@ -23,7 +20,10 @@ public class BTPatrolNode : BTBaseNode
         }
 
         sequenceNode = new BTSequence(blackboard, children);
+    }
 
+    public override NodeStatus OnEnter()
+    {
         return sequenceNode.OnEnter();
     }
 

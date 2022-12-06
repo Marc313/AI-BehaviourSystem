@@ -41,7 +41,6 @@ public class Guard : AICharacter
     {
         base.Start();
 
-        List<Vector3> patrolPositions = patrolPoints.Select(t => t.position).ToList();
         Transform player = FindObjectOfType<Player>().transform;
 
         /*        BTBaseNode chasingSequence = new BTSequence(blackBoard,
@@ -61,11 +60,13 @@ public class Guard : AICharacter
 
 
 
-        BTBaseNode attackSequence = new BTSequence(blackBoard,
+        BTBaseNode attackSequence = new BTConditionDecorator(blackBoard,
                                             new BTIsTargetInRange(blackBoard, player, attackRange),
                                             new BTSequence(blackBoard,
                                                 new BTAnimate(blackBoard, "Kick"),
-                                                new BTWaitTillAnimEnd(blackBoard)
+                                                new BTWaitTillAnimEnd(blackBoard),
+                                                new BTDebugTask(blackBoard, "AnimationEnd"),
+                                                new BTAnimate(blackBoard, "Idle")
                                                 )
                                         );
 
@@ -85,23 +86,27 @@ public class Guard : AICharacter
                                             new BTSpotTarget(blackBoard, playerSpottable, true),
                                             new BTSelector(blackBoard,
                                                 new BTSequence(blackBoard,
-                                                    new BTInvert(blackBoard, 
+                                                    new BTInvert(blackBoard,
                                                         new BTHasWeapon(blackBoard, this)
                                                     ),
                                                     new BTSeekWeapon(blackBoard, maxWeaponDistance),
                                                     new BTMoveToBlackboardPos(blackBoard, "BestWeaponPosition", minDistance),
                                                     new BTPickupWeapon(blackBoard),
                                                     whileInSight
-                                                ) 
+                                                )
                                             ));
 
+        BTBaseNode patrolNode = GeneratePatrolNode();
+
         BTBaseNode patrolTree = new BTSequence(blackBoard,
-                                    new BTSpotTarget(blackBoard, playerSpottable, false),
-                                    new BTAnimate(blackBoard, "Rifle Walk", animationFadeTime),
-                                    new BTPatrolNode(blackBoard, minDistance, patrolPositions.ToArray()));
+                                    /*new BTSpotTarget(blackBoard, playerSpottable, false),*/
+                                    /*new BTAnimate(blackBoard, "Rifle Walk", animationFadeTime),*/
+                                    patrolNode);
 
         tree = new BTSelector(blackBoard,
-                    findWeaponSequence,
+                    new BTConditionDecorator(blackBoard,
+                        new BTIsTargetInRange(blackBoard, player, chaseRange),
+                        new BTFollowTarget(blackBoard, player, minDistance)),
                     patrolTree
                 );
         /*
@@ -112,7 +117,30 @@ public class Guard : AICharacter
 
                 tree = SightTest;*/
 
-        tree = attackSequence;
+        //tree = attackSequence;
+    }
+
+    private BTBaseNode GeneratePatrolNode() 
+    {
+        List<Vector3> patrolPositions = patrolPoints.Select(t => t.position).ToList();
+
+        BTMoveToPosition[] children = new BTMoveToPosition[patrolPositions.Count];
+        for (int i = 0; i < patrolPositions.Count; i++)
+        {
+            children[i] = new BTMoveToPosition(blackBoard, patrolPositions[i], minDistance);
+        }
+
+        return new BTSequence(blackBoard, children);
+        /*
+                BTSequence s = new BTSequence(blackBoard,
+                                new BTMoveToPosition(blackBoard, patrolPositions[0], minDistance),
+                                new BTMoveToPosition(blackBoard, patrolPositions[1], minDistance),
+                                new BTMoveToPosition(blackBoard, patrolPositions[2], minDistance),
+                                new BTMoveToPosition(blackBoard, patrolPositions[3], minDistance),
+                                new BTMoveToPosition(blackBoard, patrolPositions[4], minDistance)
+                                );
+
+                return s;*/
     }
 
     protected override void InitializeBlackboard()

@@ -24,7 +24,7 @@ public class BTAnimate : BTBaseNode
 
     private void SwitchAnimation(string _clipName, float _fadeTime)
     {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName(_clipName) && !animator.IsInTransition(0))
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName(_clipName) /*&& !animator.IsInTransition(0)*/)
         {
             animator.CrossFade(_clipName, _fadeTime);
         }

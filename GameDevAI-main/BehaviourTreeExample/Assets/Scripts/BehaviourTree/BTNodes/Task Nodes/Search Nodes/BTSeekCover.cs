@@ -12,7 +12,7 @@ public class BTSeekCover : BTSeekObject<Cover>
     private List<Guard> guards = new List<Guard>();
     private Guard closestGuard;
 
-    public BTSeekCover(BlackBoard _blackboard, float _maxDistance, float _inSightRange) : base(_blackboard, _maxDistance)
+    public BTSeekCover(BlackBoard _blackboard, float _inSightRange, float _maxDistance) : base(_blackboard, _maxDistance)
     {
         inSightRange = _inSightRange;
     }

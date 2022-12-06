@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class BTConditionDecorator : BTBaseNode
 {
     public override string displayName => childNode.displayName;
@@ -16,6 +18,7 @@ public class BTConditionDecorator : BTBaseNode
         NodeStatus conditionStatus = conditionNode.Evaluate();
         if (conditionStatus == NodeStatus.Success)
         {
+            Debug.Log("Condition Still True");
             return childNode.Evaluate();
         }
 
