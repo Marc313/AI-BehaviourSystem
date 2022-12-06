@@ -18,6 +18,7 @@ public class Player : MonoBehaviour, IDamageable, ISpottable, IHealthUser
 
     // Extension //
     public bool isSpotted { get; set; } = false;
+    public bool isDead { get; set; } = false;
 
     public int CurrentHealth { get; private set; }
     public int MaxHealth => 100;
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour, IDamageable, ISpottable, IHealthUser
         }
         mainCollider.enabled = true;
         rb.isKinematic = false;
+        rb.useGravity = true;
     }
 
     // Update is called once per frame
@@ -70,7 +72,6 @@ public class Player : MonoBehaviour, IDamageable, ISpottable, IHealthUser
 
     public void TakeDamage(GameObject attacker, int damage)
     {
-        Debug.Log("Au");
         animator.enabled = false;
         var cols = GetComponentsInChildren<Collider>();
         foreach (Collider col in cols)
@@ -88,6 +89,7 @@ public class Player : MonoBehaviour, IDamageable, ISpottable, IHealthUser
         }
         ragdoll.transform.SetParent(null);
 
+        isDead = true;
         gameObject.SetActive(false);
     }
 

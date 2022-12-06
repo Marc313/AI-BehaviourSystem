@@ -1,0 +1,37 @@
+using UnityEngine;
+
+public class BTWaitTask : BTBaseNode
+{
+    public override string displayName => "Waiting";
+    private float waitTime;
+    private float timer;
+
+    public BTWaitTask(BlackBoard _blackboard, float _waitTime) : base(_blackboard)
+    {
+        waitTime = _waitTime;
+        timer = _waitTime;
+    }
+
+    public override NodeStatus OnEnter()
+    {
+        return NodeStatus.Success;
+    }
+
+    public override NodeStatus OnExit()
+    {
+        timer = waitTime;
+        return NodeStatus.Success;
+    }
+
+    public override NodeStatus OnUpdate()
+    {
+        //Debug.Log("Timer: " + timer);
+
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            return NodeStatus.Success;
+        }
+        return NodeStatus.Running;
+    }
+}
