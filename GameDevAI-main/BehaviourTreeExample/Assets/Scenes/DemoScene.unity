@@ -2655,6 +2655,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI_Ninja
       objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511202, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3222543741988511203, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
         type: 3}
       propertyPath: m_RootOrder

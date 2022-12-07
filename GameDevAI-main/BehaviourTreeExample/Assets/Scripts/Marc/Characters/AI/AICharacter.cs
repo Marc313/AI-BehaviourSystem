@@ -21,7 +21,15 @@ public abstract class AICharacter : Character
     protected virtual void FixedUpdate()
     {
         NodeStatus? status = tree?.Evaluate();
-        if (tree != null) SetStateText(tree.displayName);
+
+        DecideStateMessage();
+    }
+
+    private void DecideStateMessage()
+    {
+        string message = blackBoard.Get<string>("StateMessage");
+        if (message != default(string)) SetStateText(message);
+        else if (tree != null) SetStateText(tree.displayName);
     }
 
     protected void SetStateText(string _message)

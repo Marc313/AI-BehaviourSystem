@@ -61,7 +61,7 @@ public abstract class BTSeekObject<T> : BTBaseNode where T : MonoBehaviour
         }
         else
         {
-            //Debug.Log($"Set new {typeName} position: " + bestObject.transform.position);
+            Debug.Log($"Set new {typeName} position: " + bestObject.transform.position);
             blackboard.AddOrUpdate($"Best{typeName}Position", bestObject.transform.position);
             blackboard.AddOrUpdate($"Best{typeName}", bestObject);
             return NodeStatus.Success;

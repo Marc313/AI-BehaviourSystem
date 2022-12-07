@@ -10,16 +10,22 @@ public class DistanceToTargetEvaluator : UtilityEvaluator
     private float distanceToTarget;
     private float maxDistance;
 
-    public DistanceToTargetEvaluator(BlackBoard _blackBoard, float _maxDistance) : base(_blackBoard)
+    public DistanceToTargetEvaluator(BlackBoard _blackBoard, float _maxDistance, AnimationCurve _curve = null) : base(_blackBoard)
     {
         maxDistance = _maxDistance;
         controllerTransform = _blackBoard.Get<Transform>("ControllerTransform");
         agent = _blackBoard.Get<NavMeshAgent>("Agent");
+        curve = _curve;
     }
 
     protected override AnimationCurve GetCurve()
     {
-        return blackBoard.Get<AnimationCurve>("DistanceCurve");
+        if (curve == null)
+        {
+            return blackBoard.Get<AnimationCurve>("CoverDistanceCurve");
+        }
+
+        return curve;
     }
 
     protected override float GetMinValue()
@@ -35,7 +41,6 @@ public class DistanceToTargetEvaluator : UtilityEvaluator
     protected override float GetValue()
     {
         Vector3 targetObjectPos = blackBoard.Get<MonoBehaviour>("CurrentSearchItem").transform.position;
-        //float distanceToObject = Vector3.Distance(controllerTransform.position, objectPos);
 
         float distanceToTarget = agent.CalculateDistanceToTarget(targetObjectPos);
 

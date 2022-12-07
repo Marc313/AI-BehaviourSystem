@@ -5,16 +5,8 @@ public class BTSeekCover : BTSeekObject<Cover>
 {
     public override string displayName => "Seek Cover";
 
-    private GameObject coverObject;
-    private float inSightRange;
-    private float maxCoverDistance;
-
-    private List<Guard> guards = new List<Guard>();
-    private Guard closestGuard;
-
-    public BTSeekCover(BlackBoard _blackboard, float _inSightRange, float _maxDistance) : base(_blackboard, _maxDistance)
+    public BTSeekCover(BlackBoard _blackboard, float _maxDistance) : base(_blackboard, _maxDistance)
     {
-        inSightRange = _inSightRange;
     }
 
     public override NodeStatus OnUpdate()
@@ -24,9 +16,13 @@ public class BTSeekCover : BTSeekObject<Cover>
 
     public override void SetupEvaluators()
     {
-        evaluators = new List<UtilityEvaluator> 
-        { 
-            new DistanceToTargetEvaluator(blackboard, maxDistance)
+        evaluators = new List<UtilityEvaluator>
+        {
+            // Instead of evaluating distance from ninja to cover, do it from cover to target (ninja, guard, etc.)
+            new DistanceToTargetEvaluator(blackboard, maxDistance),
+            new DistanceToEnemyEvaluator(blackboard, maxDistance),
+            new InSightEvaluator(blackboard, maxDistance),
+            new BlockingEnemySightEvaluator(blackboard, maxDistance) 
         };
     }
 }
