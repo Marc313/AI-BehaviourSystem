@@ -27,6 +27,7 @@ public class BTFollowTarget : BTBaseNode
     public override NodeStatus OnEnter()
     {
         agent.enabled = true;
+        agent.isStopped = false;
         return NodeStatus.Success;
     }
 
@@ -50,4 +51,9 @@ public class BTFollowTarget : BTBaseNode
         agent.SetDestination(controllerTransform.position);
         return NodeStatus.Success;
     }
+
+/*    public override void Abort()
+    {
+        agent.SetDestination(controllerTransform.position);
+    }*/
 }

@@ -40,6 +40,8 @@ public abstract class BTSeekObject<T> : BTBaseNode where T : MonoBehaviour
         T bestObject = null;
         foreach (T foundObject in objectsInRange)
         {
+            if (foundObject is Weapon && foundObject.gameObject.GetComponent<Weapon>().isClaimed) break;
+
             blackboard.AddOrUpdate($"CurrentSearchItem", foundObject);
             float normalizedScore = evaluators.Sum(e => e.GetNormalizedScore()) / evaluators.Count;
 
@@ -61,7 +63,8 @@ public abstract class BTSeekObject<T> : BTBaseNode where T : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Set new {typeName} position: " + bestObject.transform.position);
+            if (bestObject is Weapon) { bestObject.gameObject.GetComponent<Weapon>().isClaimed = true; }
+
             blackboard.AddOrUpdate($"Best{typeName}Position", bestObject.transform.position);
             blackboard.AddOrUpdate($"Best{typeName}", bestObject);
             return NodeStatus.Success;

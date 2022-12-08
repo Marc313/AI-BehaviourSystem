@@ -27,6 +27,7 @@ public class BTMoveToBlackboardPos : BTBaseNode
             targetPos = blackboard.Get<Vector3>(waypointBlackboardID);
 
             agent.enabled = true;
+            agent.isStopped = false;
             agent.SetDestination(targetPos);
 
             return NodeStatus.Success;
@@ -39,6 +40,11 @@ public class BTMoveToBlackboardPos : BTBaseNode
 
     public override NodeStatus OnUpdate()
     {
+        if (agent.destination != targetPos)
+        {
+            agent.SetDestination(targetPos);
+        }
+
         distanceToDestination = Vector3.Distance(controllerTransform.position, targetPos);
         if (distanceToDestination > minDistance)
         {
@@ -53,6 +59,11 @@ public class BTMoveToBlackboardPos : BTBaseNode
         agent.SetDestination(controllerTransform.position);
         return NodeStatus.Success;
     }
+
+/*    public override void Abort()
+    {
+        agent.SetDestination(controllerTransform.position);
+    }*/
 
     private void GetBlackboardValues()
     {

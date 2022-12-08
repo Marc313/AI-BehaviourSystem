@@ -18,3 +18,9 @@ public interface IWeaponWielder
 {
     public Weapon weapon { get; set; }
 }
+
+public interface IAlertable
+{
+    public bool isAlerted { get; }
+    public void Alert();
+}

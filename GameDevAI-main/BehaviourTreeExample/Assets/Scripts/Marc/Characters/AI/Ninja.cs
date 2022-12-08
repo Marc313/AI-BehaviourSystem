@@ -79,7 +79,7 @@ public class Ninja : AICharacter
 
         tree = new BTSelector(blackBoard,
                                 new BTConditionDecorator(blackBoard,
-                                    new BTConditional(blackBoard, () => !player.gameObject.activeSelf),
+                                    new BTCustomCondition(blackBoard, () => !player.gameObject.activeSelf),
                                     hideSequence
                                 ),
                                 new BTSelector(blackBoard,

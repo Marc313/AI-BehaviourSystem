@@ -23,8 +23,6 @@ public class BTWaitTillAnimEnd : BTBaseNode
 
     public override NodeStatus OnUpdate()
     {
-        Debug.Log("Wait: " + waitNode);
-
         return waitNode.OnUpdate();
     }
 

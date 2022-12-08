@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Guard : AICharacter, IWeaponWielder
+public class Guard : AICharacter, IWeaponWielder, IAlertable
 {
     public Weapon weapon { get; set; }
+    public bool isAlerted { get; private set; }
 
     [Header("Patrol Behaviour")]
     [SerializeField] private List<Transform> patrolPoints;
@@ -17,6 +19,12 @@ public class Guard : AICharacter, IWeaponWielder
     [SerializeField] private float attackingRange = 2;
     [SerializeField] private Transform attackTransform;
     [SerializeField] private float attackRadius = 1.5f;
+
+    [Header("Alerting")]
+    [SerializeField] private GameObject alertVFXPrefab;
+    [SerializeField] private Transform vfxTransform;
+    [SerializeField] private float alertedDuration = 1;
+    [SerializeField] private float alertRange = 20;
 
     [Header("Finding Weapons")]
     [SerializeField] private float maxWeaponDistance = 25;
@@ -30,6 +38,7 @@ public class Guard : AICharacter, IWeaponWielder
 
     [Header("Animator")]
     [SerializeField] private float animationFadeTime;
+
 
     // Awake is not in AICharacter, to add flexibility for the gameobject structure of the character
     private void Awake()
@@ -49,12 +58,13 @@ public class Guard : AICharacter, IWeaponWielder
         BTBaseNode attackSequence = new BTConditionDecorator(blackBoard,
                                             new BTIsTargetInRange(blackBoard, player, attackingRange),
                                             new BTSequence(blackBoard,
+                                                new BTInvokeAction(blackBoard, () => agent.isStopped = true),
                                                 new BTChangeBlackBoardVariable(blackBoard, "StateMessage", "Attacking Target"),
                                                 new BTAnimate(blackBoard, "Melee Attack"),
                                                 new BTWaitTillAnimEnd(blackBoard)
                                                 //new BTAnimate(blackBoard, "Idle")
                                                 )
-                                        );
+                                            );
 
         BTBaseNode chasingTree = new BTSelector(blackBoard,
                                     attackSequence,
@@ -67,7 +77,7 @@ public class Guard : AICharacter, IWeaponWielder
 
         BTBaseNode whileInSight = new BTConditionDecorator(blackBoard,
                                         new BTSequence(blackBoard,
-                                            new BTConditional(blackBoard, () => player.gameObject.activeSelf),
+                                            new BTCustomCondition(blackBoard, () => player.gameObject.activeSelf),
                                             new BTIsTargetInSight(blackBoard, player, inSightRange)
                                         ),
                                         chasingTree
@@ -83,38 +93,47 @@ public class Guard : AICharacter, IWeaponWielder
                                                     new BTPickupWeapon(blackBoard)
                                                 );
 
-        BTBaseNode playerSpottedSequence = new BTSequence(blackBoard,
-                                            new BTIsTargetInRange(blackBoard, player, chaseRange),
-                                            new BTIsTargetInSight(blackBoard, player, inSightRange),
-                                            new BTSpotTarget(blackBoard, playerSpottable, true),
-                                            new BTSelector(blackBoard,
+        BTBaseNode onPlayerSpottedSequence = new BTSelector(blackBoard,
                                                 findWeaponSequence,
                                                 whileInSight
-                                            ));
+                                                );
+
+        BTBaseNode checkPlayerInSight = new BTSequence(blackBoard,
+                                                new BTCustomCondition(blackBoard, () => player.gameObject.activeSelf),
+                                                new BTIsTargetInRange(blackBoard, player, chaseRange),
+                                                new BTIsTargetInSight(blackBoard, player, inSightRange),
+                                                new BTSpotTarget(blackBoard, playerSpottable, true),
+                                                new BTAlertAlliesInRange<Guard>(blackBoard, alertRange),
+                                                new BTSpawnObjectAtPlace(blackBoard, alertVFXPrefab, vfxTransform),
+                                                onPlayerSpottedSequence
+                                                );
 
         BTBaseNode patrolNode = GeneratePatrolNode();
 
         BTBaseNode patrolTree = new BTSequence(blackBoard,
-                                    //new BTSpotTarget(blackBoard, playerSpottable, false),
                                     new BTDebugTask(blackBoard, "Patrolling"),
                                     new BTChangeBlackBoardVariable(blackBoard, "StateMessage", "Patrolling"),
                                     new BTAnimate(blackBoard, "Rifle Walk", animationFadeTime),
                                     patrolNode);
 
-/*        BTBaseNode playerDeathNode = new BTConditionDecorator(blackBoard,
-                                        new );*/
+        BTBaseNode alertedTree = new BTSequence(blackBoard, 
+                                    new BTIsAlerted(blackBoard, this),
+                                    onPlayerSpottedSequence
+                                );
 
         tree = new BTSelector(blackBoard,
-                    playerSpottedSequence,
+                    alertedTree,
+                    checkPlayerInSight,
                     patrolTree
                     );
 
         tree = new BTParallel(blackBoard,
                  tree,
                  new BTSelector(blackBoard,
-                    new BTConditionDecorator(blackBoard,
+                    new BTSequence(blackBoard,
                         new BTIsTargetInSight(blackBoard, player, inSightRange),
-                        new BTSpotTarget(blackBoard, playerSpottable, true)
+                        new BTSequence(blackBoard,
+                            new BTSpotTarget(blackBoard, playerSpottable, true))
                     ),
                     new BTSpotTarget(blackBoard, playerSpottable, false)
                  )
@@ -201,6 +220,11 @@ public class Guard : AICharacter, IWeaponWielder
 
         // Floats
         blackBoard.AddOrUpdate("AttackRange", attackingRange);
+    }
 
+    public async void Alert()
+    {
+        isAlerted = true;
+        await Task.Delay((int) (alertedDuration * 1000));
     }
 }

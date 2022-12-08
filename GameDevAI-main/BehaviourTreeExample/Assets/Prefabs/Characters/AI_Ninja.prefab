@@ -57,10 +57,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3222543741988511202}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -12.95}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7620779668713661306}
   - {fileID: 3222543741381789459}
@@ -83,14 +83,14 @@ MonoBehaviour:
   stateText: {fileID: 3101873659372229317}
   defaultSpeed: 2
   distanceToTarget: 5
-  minCoverDistance: 0.3
+  minCoverDistance: 2
   inSightRange: -0.5
   coverMoveSpeed: 3
   maxCoverDistance: 50
   smokeBombPrefab: {fileID: 8602805052199350183, guid: 3e81fa1fc8fa27a43afb99487ddc8b41,
     type: 3}
-  smokeBombCooldown: 1
-  distanceEvaluator:
+  smokeBombCooldown: 5
+  distanceToCoverEvaluator:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -114,9 +114,75 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  distanceToEnemyEvaluator:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   lineOfSightEvaluator:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  BlockingEnemySightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -277,22 +343,22 @@ PrefabInstance:
     - target: {fileID: 555305999985645754, guid: 30c35a78f2b8f4f41a4c6c0ee77372da,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.40294507
+      value: 0.29846895
       objectReference: {fileID: 0}
     - target: {fileID: 555305999985645754, guid: 30c35a78f2b8f4f41a4c6c0ee77372da,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.015825203
+      value: 0.021933561
       objectReference: {fileID: 0}
     - target: {fileID: 555305999985645754, guid: 30c35a78f2b8f4f41a4c6c0ee77372da,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9143824
+      value: 0.95160127
       objectReference: {fileID: 0}
     - target: {fileID: 555305999985645754, guid: 30c35a78f2b8f4f41a4c6c0ee77372da,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.03591131
+      value: -0.06993024
       objectReference: {fileID: 0}
     - target: {fileID: 555305999985645757, guid: 30c35a78f2b8f4f41a4c6c0ee77372da,
         type: 3}

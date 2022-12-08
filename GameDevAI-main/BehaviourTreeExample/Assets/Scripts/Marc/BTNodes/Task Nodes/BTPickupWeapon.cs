@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BTPickupWeapon : BTBaseNode
@@ -23,6 +21,13 @@ public class BTPickupWeapon : BTBaseNode
         {
             Rigidbody rb = weapon.GetComponent<Rigidbody>();
             if (rb != null) rb.useGravity = false;
+
+            GameObject weaponHolder = weapon.transform.parent.gameObject;
+            weapon.isPickedUp= true;
+            weapon.transform.parent = null;
+            weapon.transform.rotation = Quaternion.identity;
+
+            weaponHolder.SetActive(false);
 
             return NodeStatus.Success;
         }

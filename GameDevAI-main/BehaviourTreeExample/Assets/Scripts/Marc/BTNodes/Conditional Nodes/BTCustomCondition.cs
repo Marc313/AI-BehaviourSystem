@@ -1,13 +1,13 @@
 using System;
 
-public class BTConditional : BTBaseNode
+public class BTCustomCondition : BTBaseNode
 {
     public delegate bool conditionCheck();
     public override string displayName => "Condition";
 
     private Func<bool> condition;
 
-    public BTConditional(BlackBoard _blackboard, Func<bool> _condition) : base(_blackboard)
+    public BTCustomCondition(BlackBoard _blackboard, Func<bool> _condition) : base(_blackboard)
     {
         condition = _condition;
     }

@@ -23,7 +23,6 @@ public class BTDebugTask : BTBaseNode
 
     public override NodeStatus OnUpdate()
     {
-        Debug.Log(message);
         return NodeStatus.Success;
     }
 }
