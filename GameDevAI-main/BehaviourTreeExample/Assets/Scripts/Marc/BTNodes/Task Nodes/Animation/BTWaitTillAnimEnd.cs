@@ -18,12 +18,13 @@ public class BTWaitTillAnimEnd : BTBaseNode
     {
         float currentClipLength = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
         waitNode = new BTWaitTask(blackboard, currentClipLength);
-
         return waitNode.OnEnter();
     }
 
     public override NodeStatus OnUpdate()
     {
+        Debug.Log("Wait: " + waitNode);
+
         return waitNode.OnUpdate();
     }
 

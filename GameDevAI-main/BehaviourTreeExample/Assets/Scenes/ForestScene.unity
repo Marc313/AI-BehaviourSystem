@@ -914,6 +914,11 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 167077512518955982, guid: 07bc0e564c2309746a162682117c1329,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07bc0e564c2309746a162682117c1329, type: 3}
 --- !u!1001 &404337272
@@ -1970,6 +1975,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI_Ninja
       objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511202, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3222543741988511203, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
         type: 3}
       propertyPath: m_RootOrder
@@ -2057,6 +2067,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
         type: 3}
+      propertyPath: lineOfSightEvaluator.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: BlockingEnemySightCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
       propertyPath: distanceToCoverEvaluator.m_Curve.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -2067,6 +2087,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
         type: 3}
+      propertyPath: lineOfSightEvaluator.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: lineOfSightEvaluator.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: lineOfSightEvaluator.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: BlockingEnemySightCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: lineOfSightEvaluator.m_Curve.Array.data[0].inSlope
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: lineOfSightEvaluator.m_Curve.Array.data[1].inSlope
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: BlockingEnemySightCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
       propertyPath: distanceToCoverEvaluator.m_Curve.Array.data[1].time
       value: 1
       objectReference: {fileID: 0}
@@ -2074,6 +2129,21 @@ PrefabInstance:
         type: 3}
       propertyPath: distanceToEnemyEvaluator.m_Curve.Array.data[1].time
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: lineOfSightEvaluator.m_Curve.Array.data[0].outSlope
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: lineOfSightEvaluator.m_Curve.Array.data[1].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: lineOfSightEvaluator.m_Curve.Array.data[1].outSlope
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
         type: 3}
@@ -2089,6 +2159,21 @@ PrefabInstance:
         type: 3}
       propertyPath: distanceToEnemyEvaluator.m_Curve.Array.data[1].value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: lineOfSightEvaluator.m_Curve.Array.data[0].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: BlockingEnemySightCurve.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: BlockingEnemySightCurve.m_Curve.Array.data[1].outSlope
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
         type: 3}
@@ -2109,6 +2194,16 @@ PrefabInstance:
         type: 3}
       propertyPath: distanceToEnemyEvaluator.m_Curve.Array.data[1].inSlope
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: lineOfSightEvaluator.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
+        type: 3}
+      propertyPath: lineOfSightEvaluator.m_Curve.Array.data[1].tangentMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3222543741988511214, guid: 51cdb0e5eb7f97e4db1e51985558e90c,
         type: 3}
@@ -3991,8 +4086,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 593235204095743916, guid: a8074f0cd2d7558499bc53d828cab503,
         type: 3}
+      propertyPath: attackRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 593235204095743916, guid: a8074f0cd2d7558499bc53d828cab503,
+        type: 3}
       propertyPath: inSightRange
-      value: 0.5
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 593235204095743916, guid: a8074f0cd2d7558499bc53d828cab503,
         type: 3}

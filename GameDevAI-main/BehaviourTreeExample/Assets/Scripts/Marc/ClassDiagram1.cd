@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BTBaseNode">
+    <Position X="20.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAFAAACAAAAAAAgAAAAAQAAAEAIAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTBaseNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTComposite">
+    <Position X="12.75" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAASAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Composite Nodes\BTComposite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTCondition&lt;T&gt;">
+    <Position X="20" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAIAAABAAAAAAAAAEBAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Decorator Nodes\BTCondition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTConditionDecorator">
+    <Position X="26.5" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAACAEAAAAAAAAAAAAAAIAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Decorator Nodes\BTConditionDecorator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTDecorator">
+    <Position X="26.5" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Decorator Nodes\BTDecorator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTAnimate">
+    <Position X="38.75" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAABAAAAAAAAAAAAAAEBAAAAAgAIAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\Animation\BTAnimate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTWaitTillAnimEnd">
+    <Position X="41" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JAAAAAAAABAAAAAAAAAAAAAAAAAQAAAgAKAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\Animation\BTWaitTillAnimEnd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTAttackTarget">
+    <Position X="43.25" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABIAgAAAAAAAAAAAAAAAAAAAAAAgAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTAttackTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTChangeBlackBoardVariable">
+    <Position X="45.5" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAgA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTChangeBlackBoardVariable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTConditional">
+    <Position X="47.75" Y="17.75" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="BTConditional.conditionCheck" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTConditional.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTConditional.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTDebugTask">
+    <Position X="50" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAQAAAAAIAAAAEAACA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTDebugTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTFollowTarget">
+    <Position X="52.25" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABQAAABABAQAAIAAAAAAAAAAQAAAAAIAgAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTFollowTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTMoveToBlackboardPos">
+    <Position X="54.5" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABABAQAAAAAAAAAAIAAQAAAIAIAwAAEAAQA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTMoveToBlackboardPos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTMoveToPosition">
+    <Position X="56.75" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABABAQAAAAAAAAAAAAAQAAAIAIAwAAEAAQA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTMoveToPosition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTPatrolNode">
+    <Position X="59" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABABAAAAAAAAAAAAAAIQAAAAAIAAIAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTPatrolNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTPickupWeapon">
+    <Position X="61.25" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAABAAAAAAAAAAAAAAAAAAAAAAAIAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTPickupWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTSpotTarget">
+    <Position X="63.5" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAACCAAAAAAAAAAAAAAAAAAIAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTSpotTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTThrowObjectAtTarget">
+    <Position X="65.75" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQABAAAAAAIAAAAAAAAAAAAAAAAIAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTThrowObjectAtTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTWaitTask">
+    <Position X="68" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAABAAAAAAAAAQAAAAAAAQAAAAAIAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTWaitTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTRegisterCooldownTime">
+    <Position X="70.25" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAABAAAAAAAAAAAAAAAAAAAAAAAIAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\Cooldown\BTRegisterCooldownTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTInvokeAction">
+    <Position X="72.5" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAABAAAAAAAAAAAAAAAAAAAAAAAIAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\Custom Nodes\BTInvokeAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTSeekObject&lt;T&gt;">
+    <Position X="74.75" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAABAAAQAAAAAAAAAAAAEAAAAAAIAwAIEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\Search Nodes\BTSeekObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTOtherSequence">
+    <Position X="8.5" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Composite Nodes\BTOtherSequence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTParallel">
+    <Position X="13.75" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Composite Nodes\BTParallel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTSelector">
+    <Position X="10.25" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Composite Nodes\BTSelector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTSequence">
+    <Position X="12" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAQAAAAAIAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Composite Nodes\BTSequence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTIsTargetInRange">
+    <Position X="15.5" Y="21" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Conditional Nodes\BTIsTargetInRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTIsTargetInSight">
+    <Position X="19" Y="21" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAIAAEAAAAAAAAAAAAEAAgAABAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Conditional Nodes\BTIsTargetInSight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTIsTargetSpotted">
+    <Position X="22.5" Y="21" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Conditional Nodes\BTIsTargetSpotted.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTHasWeapon">
+    <Position X="17.25" Y="21" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\BTHasWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTIsCooldownOver">
+    <Position X="20.75" Y="21" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAEAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Task Nodes\Cooldown\BTIsCooldownOver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTInvert">
+    <Position X="24.25" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Decorator Nodes\BTInvert.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BTSucceeder">
+    <Position X="28.75" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTNodes\Decorator Nodes\BTSucceeder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="NodeStatus">
+    <Position X="22" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAIABAAAAAAAAA=</HashCode>
+      <FileName>Assets\SCRIPTS\Marc\BTBaseNode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-using static Codice.Client.Common.WebApi.WebApiEndpoints;
 
 public static class HelperExtensions
 {
+    // Method from: https://forum.unity.com/threads/getting-the-distance-in-nav-mesh.315846/
     public static float GetPathLength(this NavMeshPath _path)
     {
         float totalLength = 0f;

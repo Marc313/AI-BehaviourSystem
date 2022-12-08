@@ -4,7 +4,6 @@ public abstract class BTBaseNode
     public abstract string displayName { get; }
 
     protected BlackBoard blackboard;
-    public float utilityScore;  // Vervang met GetNormalizedUtilityScore method
     private bool isInitialized;
 
     public BTBaseNode(BlackBoard _blackboard)
@@ -15,6 +14,7 @@ public abstract class BTBaseNode
     public virtual NodeStatus OnEnter() { return NodeStatus.Success; }
     public abstract NodeStatus OnUpdate();
     public virtual NodeStatus OnExit() { return NodeStatus.Success; }
+    public virtual void Abort() { isInitialized = false; }
 
     public NodeStatus Evaluate()
     {

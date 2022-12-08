@@ -1,4 +1,4 @@
-using System.Linq;
+/*using System.Linq;
 
 public class BTUtilitySelector : BTSelector
 {
@@ -12,4 +12,4 @@ public class BTUtilitySelector : BTSelector
         children = children.OrderByDescending(node => node.utilityScore).ToArray();
         return base.OnUpdate();
     }
-}
+}*/

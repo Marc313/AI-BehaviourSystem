@@ -14,7 +14,9 @@ public class Guard : AICharacter, IWeaponWielder
 
     [Header("Chase and Attack")]
     [SerializeField] private float chaseRange = 5;
-    [SerializeField] private float attackRange = 2;
+    [SerializeField] private float attackingRange = 2;
+    [SerializeField] private Transform attackTransform;
+    [SerializeField] private float attackRadius = 1.5f;
 
     [Header("Finding Weapons")]
     [SerializeField] private float maxWeaponDistance = 25;
@@ -45,12 +47,12 @@ public class Guard : AICharacter, IWeaponWielder
         ISpottable playerSpottable = player.GetComponent<ISpottable>();
 
         BTBaseNode attackSequence = new BTConditionDecorator(blackBoard,
-                                            new BTIsTargetInRange(blackBoard, player, attackRange),
+                                            new BTIsTargetInRange(blackBoard, player, attackingRange),
                                             new BTSequence(blackBoard,
                                                 new BTChangeBlackBoardVariable(blackBoard, "StateMessage", "Attacking Target"),
                                                 new BTAnimate(blackBoard, "Melee Attack"),
-                                                new BTWaitTillAnimEnd(blackBoard),
-                                                new BTAnimate(blackBoard, "Idle")
+                                                new BTWaitTillAnimEnd(blackBoard)
+                                                //new BTAnimate(blackBoard, "Idle")
                                                 )
                                         );
 
@@ -58,7 +60,8 @@ public class Guard : AICharacter, IWeaponWielder
                                     attackSequence,
                                     new BTSequence(blackBoard,
                                         new BTChangeBlackBoardVariable(blackBoard, "StateMessage", "Chasing Target"),
-                                        new BTFollowTarget(blackBoard, player, attackRange)
+                                        new BTAnimate(blackBoard, "Rifle Walk"),
+                                        new BTFollowTarget(blackBoard, player, attackingRange)
                                         )
                                     );
 
@@ -98,6 +101,9 @@ public class Guard : AICharacter, IWeaponWielder
                                     new BTAnimate(blackBoard, "Rifle Walk", animationFadeTime),
                                     patrolNode);
 
+/*        BTBaseNode playerDeathNode = new BTConditionDecorator(blackBoard,
+                                        new );*/
+
         tree = new BTSelector(blackBoard,
                     playerSpottedSequence,
                     patrolTree
@@ -112,33 +118,49 @@ public class Guard : AICharacter, IWeaponWielder
                     ),
                     new BTSpotTarget(blackBoard, playerSpottable, false)
                  )
-
                 );
 
-        /*        tree = new BTParallel(blackBoard,
-                            new BTConditionDecorator(blackBoard,
-                                    new BTConditional(blackBoard, () => player.gameObject.activeSelf),
-                                    new BTDebugTask(blackBoard, "Player active")),
-                            tree
-                                    );*/
-
-/*
-        BTBaseNode patroltest = new BTSelector(blackBoard,
+/*        tree = new BTParallel(blackBoard,
                     new BTConditionDecorator(blackBoard,
-                        new BTIsTargetInRange(blackBoard, player, chaseRange),
-                        new BTFollowTarget(blackBoard, player, minDistance)),
-                    patrolTree
-                );*/
-        /*
-                BTBaseNode SightTest = new BTSequence(blackBoard,
+                            new BTConditional(blackBoard, () => player.gameObject.activeSelf),
+                            new BTDebugTask(blackBoard, "Player active")),
+                    tree
+                            );*/
+
+
+        /*        BTBaseNode patroltest = new BTSelector(blackBoard,
+                                            new BTConditionDecorator(blackBoard,
+                                                new BTIsTargetInRange(blackBoard, player, chaseRange),
+                                                new BTSequence(blackBoard,
+                                                    new BTChangeBlackBoardVariable(blackBoard, "StateMessage", "Chasing"),
+                                                    new BTFollowTarget(blackBoard, player, minDistance))
+                                                ),
+                                            patrolTree
+                            );*/
+
+        /*        BTBaseNode SightTest = new BTSequence(blackBoard,
                             new BTIsTargetInSight(blackBoard, player, inSightRange),
                             new BTDebugTask(blackBoard, "In Sight!")
-                                );
-
-                tree = SightTest;*/
+                                );*/
 
         //tree = patroltest;
+
+        //tree = new BTDebugTask(blackBoard, "Print");
     }
+/*
+    protected override void Start()
+    {
+        base.Start();
+
+        tree = new BTSequence(blackBoard,
+                    new BTDebugTask(blackBoard, "Print1"),
+                    new BTWaitTask(blackBoard, 1),
+                    new BTDebugTask(blackBoard, "Print2"),
+                    new BTWaitTask(blackBoard, 1),
+                    new BTDebugTask(blackBoard, "Print3"),
+                    new BTWaitTask(blackBoard, 1)
+            );
+    }*/
 
     protected override void FixedUpdate()
     {
@@ -161,16 +183,6 @@ public class Guard : AICharacter, IWeaponWielder
         }
 
         return new BTSequence(blackBoard, children);
-        /*
-                BTSequence s = new BTSequence(blackBoard,
-                                new BTMoveToPosition(blackBoard, patrolPositions[0], minDistance),
-                                new BTMoveToPosition(blackBoard, patrolPositions[1], minDistance),
-                                new BTMoveToPosition(blackBoard, patrolPositions[2], minDistance),
-                                new BTMoveToPosition(blackBoard, patrolPositions[3], minDistance),
-                                new BTMoveToPosition(blackBoard, patrolPositions[4], minDistance)
-                                );
-
-                return s;*/
     }
 
     protected override void InitializeBlackboard()
@@ -188,6 +200,7 @@ public class Guard : AICharacter, IWeaponWielder
         blackBoard.AddOrUpdate("DamageCurve", damageEvaluator);
 
         // Floats
-        blackBoard.AddOrUpdate("AttackRange", attackRange);
+        blackBoard.AddOrUpdate("AttackRange", attackingRange);
+
     }
 }

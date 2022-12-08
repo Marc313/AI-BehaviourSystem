@@ -9,8 +9,8 @@ public class BTSequence : BTComposite
     public override NodeStatus OnEnter()
     {
         currentIndex= 0;
+        Debug.Log("Enter Sequence");
         return NodeStatus.Success;
-
     }
 
     public override NodeStatus OnUpdate()
@@ -42,5 +42,17 @@ public class BTSequence : BTComposite
         currentIndex = 0;
 
         return NodeStatus.Success;
+    }
+
+    public override void Abort()
+    {
+        base.Abort();
+
+        currentIndex = 0;
+
+        foreach (BTBaseNode child in children)
+        {
+            child.Abort();
+        }
     }
 }

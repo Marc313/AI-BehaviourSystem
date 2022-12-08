@@ -26,6 +26,8 @@ public class BTWaitTask : BTBaseNode
     public override NodeStatus OnUpdate()
     {
         //Debug.Log("Timer: " + timer);
+        Debug.Log("Wait: " + timer);
+
 
         timer -= Time.deltaTime;
         if (timer <= 0)

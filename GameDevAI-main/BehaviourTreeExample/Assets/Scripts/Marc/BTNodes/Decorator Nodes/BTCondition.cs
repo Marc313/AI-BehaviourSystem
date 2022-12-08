@@ -5,6 +5,7 @@ public abstract class BTCondition<T> : BTBaseNode
     public override string displayName => "Check Target in Range";
     protected System.Predicate<T> condition;
     protected T comparedValue;
+    private int field;
 
     public BTCondition(BlackBoard _blackBoard) : base(_blackBoard)
     {

@@ -1,13 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[CreateAssetMenu(menuName = "Evaluators/Float Evaluator")]
 public class DistanceToTargetEvaluator : UtilityEvaluator
 {
     private Transform target;
     private Transform controllerTransform;
     private NavMeshAgent agent;
-    private float distanceToTarget;
     private float maxDistance;
 
     public DistanceToTargetEvaluator(BlackBoard _blackBoard, float _maxDistance, AnimationCurve _curve = null) : base(_blackBoard)
