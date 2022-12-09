@@ -53,6 +53,7 @@ public class Ninja : AICharacter
                                         new BTFollowTarget(blackBoard, player, distanceToTarget));
 
         BTBaseNode seekingCover = new BTSequence(blackBoard,
+                                        new BTAnimate(blackBoard, "Crouch Idle"),
                                         new BTChangeBlackBoardVariable(blackBoard, "StateMessage", "Seek Cover"),
                                         new BTSeekCover(blackBoard, maxCoverDistance),
                                         new BTInvert(blackBoard,
@@ -60,8 +61,7 @@ public class Ninja : AICharacter
                                         new BTAnimate(blackBoard, "Walk Crouch"),
                                         new BTInvokeAction(blackBoard, () => agent.speed = coverMoveSpeed),
                                         new BTMoveToBlackboardPos(blackBoard, "BestCoverPosition", minCoverDistance),
-                                        new BTInvokeAction(blackBoard, () => agent.speed = defaultSpeed),
-                                        new BTAnimate(blackBoard, "Crouch Idle")
+                                        new BTInvokeAction(blackBoard, () => agent.speed = defaultSpeed)
                                     );
 
         BTBaseNode playerSpottedSequence = new BTSequence(blackBoard,

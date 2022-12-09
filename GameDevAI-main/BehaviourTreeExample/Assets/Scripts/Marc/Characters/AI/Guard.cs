@@ -51,7 +51,6 @@ public class Guard : AICharacter, IWeaponWielder, IAlertable
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         player = FindObjectOfType<Player>().transform;
-
     }
 
     protected override void Start()
@@ -145,35 +144,6 @@ public class Guard : AICharacter, IWeaponWielder, IAlertable
                     new BTSpotTarget(blackBoard, playerSpottable, false)
                  )
                 );
-
-        /*        tree = new BTParallel(blackBoard,
-                            new BTConditionDecorator(blackBoard,
-                                    new BTConditional(blackBoard, () => player.gameObject.activeSelf),
-                                    new BTDebugTask(blackBoard, "Player active")),
-                            tree
-                                    );*/
-
-
-        /*        BTBaseNode patroltest = new BTSelector(blackBoard,
-                                            new BTConditionDecorator(blackBoard,
-                                                new BTIsTargetInRange(blackBoard, player, chaseRange),
-                                                new BTSequence(blackBoard,
-                                                    new BTChangeBlackBoardVariable(blackBoard, "StateMessage", "Chasing"),
-                                                    new BTFollowTarget(blackBoard, player, minDistance))
-                                                ),
-                                            patrolTree
-                            );*/
-
-/*        BTBaseNode SightTest = new BTSequence(blackBoard,
-                                    new BTIsTargetInSight(blackBoard, player, currentInSightRange),
-                                    new BTDebugTask(blackBoard, "In Sight!")
-                                        );
-
-        tree = SightTest;*/
-
-        //tree = patroltest;
-
-        //tree = new BTDebugTask(blackBoard, "Print");
     }
 
     protected override void FixedUpdate()
