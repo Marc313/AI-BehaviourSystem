@@ -54,10 +54,11 @@ public class BTMoveToPosition : BTBaseNode
     public override NodeStatus OnExit()
     {
         agent.SetDestination(controllerTransform.position);
+        agent.isStopped = true;
         return NodeStatus.Success;
     }
-
-/*    public override void Abort()
+/*
+    public override void Abort()
     {
         agent.SetDestination(controllerTransform.position);
     }*/

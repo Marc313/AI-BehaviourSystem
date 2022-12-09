@@ -47,6 +47,7 @@ public class BTFollowTarget : BTBaseNode
     public override NodeStatus OnExit()
     {
         agent.SetDestination(controllerTransform.position);
+        agent.isStopped = true;
         return NodeStatus.Success;
     }
 

@@ -23,7 +23,6 @@ public class BTParallel : BTComposite
             }
         }
 
-        //Debug.Log("Parallel Success");
         return NodeStatus.Success;
     }
 }

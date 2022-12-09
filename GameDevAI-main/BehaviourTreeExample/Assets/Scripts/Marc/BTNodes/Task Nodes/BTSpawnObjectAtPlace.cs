@@ -16,7 +16,6 @@ public class BTSpawnObjectAtPlace : BTBaseNode
 
     public override NodeStatus OnEnter()
     {
-        Debug.Log("VFX");
         GameObject.Instantiate(prefab, place.position, place.rotation);
         return NodeStatus.Success;
     }

@@ -15,7 +15,6 @@ public class BTThrowObjectAtTarget : BTBaseNode
 
     public override NodeStatus OnEnter()
     {
-        //Debug.Log("Throw");
         GameObject.Instantiate(objectPrefab, target.position, Quaternion.identity);
         return base.OnEnter();
     }

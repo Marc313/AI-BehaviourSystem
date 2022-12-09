@@ -57,6 +57,7 @@ public class BTMoveToBlackboardPos : BTBaseNode
     public override NodeStatus OnExit()
     {
         agent.SetDestination(controllerTransform.position);
+        agent.isStopped = true;
         return NodeStatus.Success;
     }
 

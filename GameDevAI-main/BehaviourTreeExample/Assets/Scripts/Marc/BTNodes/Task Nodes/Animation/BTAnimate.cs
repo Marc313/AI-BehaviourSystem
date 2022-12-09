@@ -35,13 +35,4 @@ public class BTAnimate : BTBaseNode
 
         return NodeStatus.Success;
     }
-
-/*    public override NodeStatus OnExit()
-    {
-        Debug.Log("Animation Exit!!");
-
-        //SwitchAnimation("Walk Crouch", fadeTime);
-
-        return base.OnExit();
-    }*/
 }

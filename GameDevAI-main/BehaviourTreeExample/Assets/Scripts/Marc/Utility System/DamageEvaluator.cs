@@ -27,7 +27,6 @@ public class DamageEvaluator : UtilityEvaluator
         Weapon weapon = blackBoard.Get<Weapon>("CurrentSearchItem");
         if (weapon != null)
         {
-            //Debug.Log("Weapon Found!");
             return weapon.damage;
         }
         return 0;

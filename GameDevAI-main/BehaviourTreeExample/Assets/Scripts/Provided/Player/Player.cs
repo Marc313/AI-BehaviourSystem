@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable, ISpottable, IHealthUser
+public class Player : MonoBehaviour, ISpottable, IHealthUser
 {
     // Provided //
     public Transform Camera;

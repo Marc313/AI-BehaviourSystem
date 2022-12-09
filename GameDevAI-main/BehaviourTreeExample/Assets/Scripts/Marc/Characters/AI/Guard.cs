@@ -196,7 +196,7 @@ public class Guard : AICharacter, IWeaponWielder, IAlertable
             children[i] = new BTMoveToPosition(blackBoard, patrolPositions[i], minDistance);
         }
 
-        return new BTSequence(blackBoard, children);
+        return new BTSequenceNoReset(blackBoard, children);
     }
 
     protected override void InitializeBlackboard()
