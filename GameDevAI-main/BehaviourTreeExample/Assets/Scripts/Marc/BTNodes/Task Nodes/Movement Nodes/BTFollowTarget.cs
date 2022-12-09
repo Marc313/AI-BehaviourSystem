@@ -1,6 +1,4 @@
-﻿using Codice.Client.Common;
-using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class BTFollowTarget : BTBaseNode

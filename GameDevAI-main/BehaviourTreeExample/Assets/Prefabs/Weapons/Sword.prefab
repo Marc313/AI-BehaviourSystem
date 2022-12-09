@@ -15,17 +15,17 @@ PrefabInstance:
     - target: {fileID: 6948560263145039283, guid: f381f952105b0a5409a7dcbf2d6229eb,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6948560263145039283, guid: f381f952105b0a5409a7dcbf2d6229eb,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6948560263145039283, guid: f381f952105b0a5409a7dcbf2d6229eb,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6948560263145039283, guid: f381f952105b0a5409a7dcbf2d6229eb,
         type: 3}
@@ -87,7 +87,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1803526482535673542, guid: f381f952105b0a5409a7dcbf2d6229eb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f381f952105b0a5409a7dcbf2d6229eb, type: 3}
 --- !u!1 &4798898006392068219 stripped
 GameObject:
@@ -108,3 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  isClaimed: 0
+  isPickedUp: 0

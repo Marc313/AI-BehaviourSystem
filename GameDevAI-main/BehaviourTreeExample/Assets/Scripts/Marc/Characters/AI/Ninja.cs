@@ -55,6 +55,8 @@ public class Ninja : AICharacter
         BTBaseNode seekingCover = new BTSequence(blackBoard,
                                         new BTChangeBlackBoardVariable(blackBoard, "StateMessage", "Seek Cover"),
                                         new BTSeekCover(blackBoard, maxCoverDistance),
+                                        new BTInvert(blackBoard,
+                                            new BTIsNearbyBlackBoardPos(blackBoard, "BestCoverPosition", minCoverDistance)),
                                         new BTAnimate(blackBoard, "Walk Crouch"),
                                         new BTInvokeAction(blackBoard, () => agent.speed = coverMoveSpeed),
                                         new BTMoveToBlackboardPos(blackBoard, "BestCoverPosition", minCoverDistance),
@@ -87,22 +89,6 @@ public class Ninja : AICharacter
                                         followSequence
                                     )
                                 );
-
-
-
-        /*
-                tree = new BTSequence(blackBoard,
-                        new BTConditionDecorator(blackBoard, 
-                            new BTConditional(blackBoard, () => Vector3.Distance(transform.position, player.position) < distanceToTarget),
-                            new BTSequence(blackBoard,
-                                new BTDebugTask(blackBoard, "Test1"),
-                                new BTWaitTask(blackBoard, 2f),
-                                new BTDebugTask(blackBoard, "Test2"),
-                                new BTWaitTask(blackBoard, 2f),
-                                new BTDebugTask(blackBoard, "Test3")
-
-                            ))
-                        );*/
     }
 
     protected override void InitializeBlackboard()
@@ -110,6 +96,7 @@ public class Ninja : AICharacter
         blackBoard = new BlackBoard();
 
         // Components
+        blackBoard.AddOrUpdate("ControllerObject", gameObject);
         blackBoard.AddOrUpdate("ControllerTransform", transform);
         blackBoard.AddOrUpdate("Agent", agent);
         blackBoard.AddOrUpdate("Animator", animator);
@@ -120,17 +107,4 @@ public class Ninja : AICharacter
         blackBoard.AddOrUpdate("SightCurve", lineOfSightEvaluator);
         blackBoard.AddOrUpdate("BlockingEnemySightCurve", BlockingEnemySightCurve);
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.yellow;
-    //    Handles.color = Color.yellow;
-    //    Vector3 endPointLeft = viewTransform.position + (Quaternion.Euler(0, -ViewAngleInDegrees.Value, 0) * viewTransform.transform.forward).normalized * SightRange.Value;
-    //    Vector3 endPointRight = viewTransform.position + (Quaternion.Euler(0, ViewAngleInDegrees.Value, 0) * viewTransform.transform.forward).normalized * SightRange.Value;
-
-    //    Handles.DrawWireArc(viewTransform.position, Vector3.up, Quaternion.Euler(0, -ViewAngleInDegrees.Value, 0) * viewTransform.transform.forward, ViewAngleInDegrees.Value * 2, SightRange.Value);
-    //    Gizmos.DrawLine(viewTransform.position, endPointLeft);
-    //    Gizmos.DrawLine(viewTransform.position, endPointRight);
-
-    //}
 }

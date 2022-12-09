@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 3738370525426866236, guid: 7a4886d153ae58e4f89ed559e028426d,
         type: 3}
       propertyPath: m_Name
-      value: Mace_01
+      value: Mace
       objectReference: {fileID: 0}
     - target: {fileID: 4083230507447059078, guid: 7a4886d153ae58e4f89ed559e028426d,
         type: 3}
@@ -20,17 +20,17 @@ PrefabInstance:
     - target: {fileID: 4083230507447059078, guid: 7a4886d153ae58e4f89ed559e028426d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4083230507447059078, guid: 7a4886d153ae58e4f89ed559e028426d,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4083230507447059078, guid: 7a4886d153ae58e4f89ed559e028426d,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4083230507447059078, guid: 7a4886d153ae58e4f89ed559e028426d,
         type: 3}
@@ -108,3 +108,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+  isClaimed: 0
+  isPickedUp: 0

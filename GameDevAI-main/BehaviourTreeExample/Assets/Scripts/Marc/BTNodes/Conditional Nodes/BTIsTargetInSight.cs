@@ -11,11 +11,14 @@ public class BTIsTargetInSight : BTCondition<bool>
     private Transform controllerTransform;
     private float inSightRange;
 
+    private Collider targetCollider;
+
     public BTIsTargetInSight(BlackBoard _blackboard, Transform _target, float _inSightRange) : base(_blackboard)
     {
         target = _target;
         inSightRange = _inSightRange;
         controllerTransform = blackboard.Get<Transform>("ControllerTransform");
+        targetCollider = blackboard.Get<Collider>("TargetCollider");
 
         condition = (bool isInSight) => isInSight;
     }
@@ -33,7 +36,15 @@ public class BTIsTargetInSight : BTCondition<bool>
         {
             if (hitInSight.collider.gameObject.transform != target)
             {
-                return false;
+                // If there is no raycasthit, try to find a boxcasthit, since it is possible that only a part of the target is hidden.
+                Vector3 boxExtends = targetCollider.bounds.extents;
+                if (Physics.BoxCast(controllerTransform.position, directionToOther, boxExtends, out hitInSight, Quaternion.identity, 50))
+                {
+                    if (hitInSight.collider.gameObject.transform != target)
+                    {
+                        return false;
+                    }
+                }
             }
         }
 

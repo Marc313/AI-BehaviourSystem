@@ -17,11 +17,13 @@ public class Player : MonoBehaviour, IDamageable, ISpottable, IHealthUser
     private Collider mainCollider;
 
     // Extension //
-    public bool isSpotted { get; set; } = false;
+    public bool isSpotted => spotters.Count > 0;
+    public List<GameObject> spotters { get; private set; } = new List<GameObject>();
     public bool isDead { get; set; } = false;
 
     public int CurrentHealth { get; private set; }
     public int MaxHealth => 100;
+
 
     // Start is called before the first frame update
     void Start()
@@ -112,6 +114,21 @@ public class Player : MonoBehaviour, IDamageable, ISpottable, IHealthUser
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName(animationName) && !animator.IsInTransition(0))
         {
             animator.CrossFade(animationName, fadeTime);
+        }
+    }
+
+    public void Spot(GameObject _spotter, bool _spotted)
+    {
+        if (_spotted)
+        {
+            spotters.Add(_spotter);
+        }
+        else
+        {
+            if (spotters.Contains(_spotter))
+            {
+                spotters.Remove(_spotter);
+            }
         }
     }
 }

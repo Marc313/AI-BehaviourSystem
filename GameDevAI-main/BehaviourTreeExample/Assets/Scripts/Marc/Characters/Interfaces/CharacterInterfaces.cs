@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 public interface IDamagable
 {
     public void TakeDamage(int _damage) { }
@@ -11,7 +14,10 @@ public interface IHealthUser : IDamagable
 
 public interface ISpottable
 {
-    public bool isSpotted { get; set; }
+    public bool isSpotted { get; }
+    public List<GameObject> spotters { get; }
+
+    public void Spot(GameObject _spotter, bool _spotted);
 }
 
 public interface IWeaponWielder

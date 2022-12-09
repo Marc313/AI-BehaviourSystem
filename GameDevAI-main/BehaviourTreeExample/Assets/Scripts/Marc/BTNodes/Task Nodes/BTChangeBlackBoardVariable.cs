@@ -15,6 +15,13 @@ public class BTChangeBlackBoardVariable : BTBaseNode
         newValue = _newValue;
     }
 
+    public override NodeStatus OnEnter()
+    {
+        blackboard.AddOrUpdate(id, newValue);
+        return NodeStatus.Success;
+    }
+
+
     public override NodeStatus OnUpdate()
     {
         blackboard.AddOrUpdate(id, newValue);
