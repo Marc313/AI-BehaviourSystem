@@ -1,0 +1,7 @@
+# AI-BehaviourSystem
+Interact with different kinds of NPCs that are created using a behavior tree.
+
+In this project, there are two types of NPCs: guards and ninjas. A guard will initially patrol along a set path. Whenever the guard spots a player however, it will alert other guards in the area and pick up a weapon. Whenever a guard sees the player or is alerted while already carrying a weapon, the guard will chase and attack the player. When the player is dead or out of sight, a guard will continue patrolling the area.
+A ninja will follow the player while maintaining a distance from the player. Whenever the player is spotted by a guard, the ninja will look for the best cover, and when he is safe, he will throw a smoke bomb toward the player, which will help the player hide from the guards. If the player dies, the ninja will try to stay out of sight of the guards.
+
+The behavior of the guards and the ninja are mainly created with a behavior tree: a tree that decides the current behavior of an object. In a behavior tree, it is easy to work very modularly and to keep code separated into different classes. Both AIs also use a Utility System, for example when deciding which weapon they should pick up or which cover position is the safest to move to. The utility system will evaluate different factors that come with each option and calculate a score based on these factors, and choose the object with the highest score.
